@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mimita Remember | Velas Artesanales</title>
+  <style>
+    :root{
+      --bg:#0f0f12;
+      --card:#17171c;
+      --soft:#1f1f26;
+      --text:#f5f5f7;
+      --muted:#b7b7c2;
+      --accent:#ffb36b;
+      --accent2:#ffd7a8;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(255,179,107,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(255,215,168,.12), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px}
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(15,15,18,.70);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:14px;
+      padding:14px 22px;
+      max-width:1100px;margin:0 auto;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .brand-badge{
+      width:38px;height:38px;border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display:grid;place-items:center;
+      box-shadow: 0 10px 25px rgba(255,179,107,.25);
+      color:#1b120a;
+      font-weight:900;
+    }
+    .brand small{display:block;color:var(--muted);font-weight:600}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .links a:hover{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.04)}
+    .hero{
+      padding:44px 0 18px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-inner{padding:26px}
+    h1{margin:0 0 10px;font-size: clamp(28px, 4vw, 44px);line-height:1.1}
+    .tagline{color:var(--muted);font-size:16px;margin:0 0 18px}
+    .quote{
+      margin:16px 0 0;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px dashed rgba(255,179,107,.35);
+      background: rgba(255,179,107,.08);
+      color:#ffe7cf;
+    }
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      color:var(--text);
+      font-weight:700;
+    }
+    .btn:hover{transform: translateY(-1px);background: rgba(255,255,255,.06)}
+    .btn.primary{
+      border-color: rgba(255,179,107,.45);
+      background: linear-gradient(135deg, rgba(255,179,107,.95), rgba(255,215,168,.85));
+      color:#1b120a;
+    }
+    .btn.primary:hover{filter: brightness(1.02)}
+    .hero-side{
+      display:grid;gap:12px;
+    }
+    .mini{
+      padding:18px;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+    .mini h3{margin:0 0 8px;font-size:16px}
+    .mini p{margin:0;color:var(--muted);font-size:14px}
+    .section{
+      margin-top:26px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+    }
+    .section h2{margin:0 0 10px;font-size:22px}
+    .section p{margin:0 0 14px;color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 560px){
+      .grid{grid-template-columns: 1fr}
+    }
+    .card{
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,.20);
+      display:flex;flex-direction:column;
+      min-height: 260px;
+    }
+    .card img{
+      width:100%;height:160px;object-fit:cover;
+      background: #0b0b0d;
+      border-bottom:1px solid var(--line);
+    }
+    .card-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+    .card-title{font-weight:850}
+    .price{
+      margin-top:auto;
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      padding-top:10px;border-top:1px solid var(--line);
+      color: #ffe7cf;
+      font-weight:800;
+    }
+    .pill{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    footer{
+      margin-top:34px;
+      padding:20px 0 30px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+    }
+    .foot{
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      align-items:center;
+    }
+    .note{
+      font-size:12px;color:rgba(255,255,255,.55)
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+    ✅ INSTRUCCIONES RÁPIDAS (Notepad++):
+    1) Guarda este archivo como: index.html
+    2) Crea una carpeta "img" al lado del index.html
+    3) Mete tus fotos en /img y reemplaza los src="img/..." por tus archivos reales
+    4) Abre index.html en tu navegador
+  -->
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-badge">MR</div>
+        <div>
+          Mimita Remember
+          <small>Velas artesanales & detalles con intención</small>
+        </div>
+      </div>
+      <nav class="links">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#como-pedir">Cómo pedir</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="inicio">
+      <div class="hero-card">
+        <div class="hero-inner">
+          <h1>Enciende una velita<br/>e ilumina tu vida ✨</h1>
+          <p class="tagline">
+            Velas para decorar o encender, con esencias deliciosas que calman el corazón.
+          </p>
+
+          <div class="quote">
+            <strong>Mimita Remember:</strong> ilumina tu vida con una velita especialmente para ti.
+          </div>
+
+          <div class="cta-row">
+            <!-- Cambia el número si lo necesitas -->
+            <a class="btn primary" href="https://wa.me/5731080959015" target="_blank" rel="noopener">
+              Pedir por WhatsApp
+            </a>
+            <a class="btn" href="#catalogo">Ver catálogo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="mini">
+          <h3>Hechas con amor</h3>
+          <p>Diseños artesanales para regalos, decoración y momentos de calma.</p>
+        </div>
+        <div class="mini">
+          <h3>Personalizables</h3>
+          <p>Colores, aromas y estilos según la ocasión (cumpleaños, amor, gratitud, intención).</p>
+        </div>
+        <div class="mini">
+          <h3>Precios claros</h3>
+          <p>Catálogo con referencias y valores para que elijas fácil y rápido.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalogo">
+      <h2>Catálogo de velas</h2>
+      <p>Reemplaza las imágenes por las tuyas (en la carpeta <strong>img</strong>). Los precios están en COP.</p>
+
+      <div class="grid">
+        <article class="card">
+          <img src="img/rosas-10cm.jpg" alt="Rosas maravillosas 10 cm" />
+          <div class="card-body">
+            <div class="card-title">Rosas maravillosas</div>
+            <div class="pill">10 cm</div>
+            <div class="price"><span>$12.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/velitas-decorativas-8cm.jpg" alt="Velitas decorativas 8 cm" />
+          <div class="card-body">
+            <div class="card-title">Velitas decorativas</div>
+            <div class="pill">8 cm</div>
+            <div class="price"><span>$12.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/corazones.jpg" alt="Corazones 10 cm y 5 cm" />
+          <div class="card-body">
+            <div class="card-title">Corazones</div>
+            <div class="pill">10 cm y 5 cm</div>
+            <div class="price"><span>$15.000 / $7.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/estrellitas-12cm.jpg" alt="Estrellitas 12 cm" />
+          <div class="card-body">
+            <div class="card-title">Estrellitas</div>
+            <div class="pill">12 cm</div>
+            <div class="price"><span>$15.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/velones-22cm.jpg" alt="Velones 22 cm" />
+          <div class="card-body">
+            <div class="card-title">Velones</div>
+            <div class="pill">22 cm</div>
+            <div class="price"><span>$25.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/velones-15cm.jpg" alt="Velones 15 cm" />
+          <div class="card-body">
+            <div class="card-title">Velones</div>
+            <div class="pill">15 cm</div>
+            <div class="price"><span>$20.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/velones-multicolores-15cm.jpg" alt="Velones multicolores 15 cm" />
+          <div class="card-body">
+            <div class="card-title">Velones multicolores</div>
+            <div class="pill">15 cm</div>
+            <div class="price"><span>$20.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/bolitas-8cm.jpg" alt="Bolitas 8 cm" />
+          <div class="card-body">
+            <div class="card-title">Bolitas</div>
+            <div class="pill">8 cm</div>
+            <div class="price"><span>$10.000</span><span>c/u</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/velitas-intencionadas.jpg" alt="Velitas intencionadas (largas y arbolitos)" />
+          <div class="card-body">
+            <div class="card-title">Velitas intencionadas</div>
+            <div class="pill">Largas / Arbolitos</div>
+            <div class="price"><span>$3.000</span><span>c/u</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="como-pedir">
+      <h2>Cómo pedir</h2>
+      <p>
+        1) Elige tu modelo del catálogo. <br/>
+        2) Dime cantidad, color y aroma (si aplica). <br/>
+        3) Te confirmo total y entrega.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://wa.me/5731080959015" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn" href="#contacto">Ver contacto</a>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <h2>Contacto</h2>
+      <p>
+        WhatsApp: <strong>+57 310 809 59015</strong><br/>
+        Horario: <span class="pill">Lun–Sáb</span> <span class="pill">9am–7pm</span><br/>
+        <span class="note">*Puedes cambiar esta información en el HTML cuando quieras.</span>
+      </p>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div><strong>Mimita Remember</strong> — Velas artesanales</div>
+        <div class="note">© <span id="year"></span> | Hecho con amor</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
