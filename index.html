@@ -1,795 +1,703 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mimita Remember | Velas Artesanales</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mimita Remember | Velas Artesanales</title>
+<meta name="description" content="Velas artesanales hechas con amor. Personalizables en color y aroma. Envío en Colombia. Pide por WhatsApp."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0b08;
+  --bg-card:rgba(255,255,255,.04);
+  --bg-card-hover:rgba(255,255,255,.07);
+  --text:#f0ece4;
+  --muted:#9a9083;
+  --muted2:#6e665d;
+  --accent:#e8924a;
+  --accent-light:#f5c98a;
+  --accent-pale:#fce8cc;
+  --accent-glow:rgba(232,146,74,.25);
+  --line:rgba(255,215,160,.09);
+  --line2:rgba(255,215,160,.17);
+  --r:14px;
+  --r-lg:20px;
+  --shadow-card:0 2px 8px rgba(0,0,0,.3);
+  --shadow-lift:0 16px 40px rgba(0,0,0,.45);
+  --shadow-modal:0 32px 80px rgba(0,0,0,.65);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --hh:64px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:pointer}
+img{display:block}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 1100px 600px at -5% -10%,rgba(232,146,74,.11),transparent 60%),
+    radial-gradient(ellipse 700px 500px at 105% 15%,rgba(245,201,138,.07),transparent 55%),
+    radial-gradient(ellipse 500px 400px at 50% 100%,rgba(232,146,74,.05),transparent 60%);
+}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(232,146,74,.3);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:rgba(232,146,74,.5)}
 
-  <style>
-    :root{
-      --bg:#0f0f12;
-      --text:#f5f5f7;
-      --muted:#b7b7c2;
-      --accent:#ffb36b;
-      --accent2:#ffd7a8;
-      --line:rgba(255,255,255,.10);
-      --shadow:0 16px 40px rgba(0,0,0,.35);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(1200px 600px at 20% 0%, rgba(255,179,107,.18), transparent 60%),
-        radial-gradient(900px 500px at 90% 10%, rgba(255,215,168,.12), transparent 55%),
-        var(--bg);
-      color:var(--text);
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1100px;margin:auto;padding:22px}
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:90;height:var(--hh);background:rgba(13,11,8,.80);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{height:var(--hh);display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin:0 auto;padding:0 20px;gap:12px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:17px;font-weight:700;flex-shrink:0}
+.brand-logo{width:38px;height:38px;border-radius:11px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:grid;place-items:center;color:#1a0d04;font-family:var(--sans);font-weight:800;font-size:13px;box-shadow:0 4px 16px var(--accent-glow)}
+.brand-sub{display:block;font-family:var(--sans);font-size:11px;font-weight:500;color:var(--muted);margin-top:1px}
+.nav-center{display:flex;align-items:center;gap:2px}
+.nav-center a{padding:8px 13px;border-radius:10px;font-size:14px;font-weight:500;color:var(--muted);transition:color .15s,background .15s}
+.nav-center a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+@media(max-width:680px){.nav-center{display:none}}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-pill{display:flex;background:rgba(255,255,255,.05);border:1px solid var(--line2);border-radius:99px;overflow:hidden}
+.lang-pill button{padding:6px 13px;background:transparent;border:none;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.4px;transition:background .15s,color .15s}
+.lang-pill button.on{background:rgba(232,146,74,.18);color:var(--accent-light)}
+.lang-pill button:hover:not(.on){color:var(--text)}
+.burger{display:none;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.burger span{display:block;width:18px;height:2px;background:var(--muted);border-radius:2px;transition:transform .25s var(--ease),opacity .2s}
+@media(max-width:680px){.burger{display:flex}}
+.mobile-nav{position:fixed;inset:0;top:var(--hh);z-index:89;background:rgba(13,11,8,.96);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transform:translateY(-100%);transition:transform .35s var(--ease);pointer-events:none}
+.mobile-nav.open{transform:translateY(0);pointer-events:all}
+.mobile-nav a{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--muted);padding:12px 28px;border-radius:var(--r);transition:color .15s,background .15s}
+.mobile-nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
 
-    header{
-      position:sticky;top:0;z-index:10;
-      backdrop-filter:blur(10px);
-      background:rgba(15,15,18,.7);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      display:flex;justify-content:space-between;align-items:center;
-      max-width:1100px;margin:auto;padding:14px 22px;
-      gap:14px;
-    }
-    .brand{display:flex;gap:10px;font-weight:800;align-items:center}
-    .brand-badge{
-      width:38px;height:38px;border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      display:grid;place-items:center;color:#1b120a;font-weight:900;
-      flex:0 0 auto;
-    }
-    .brand small{display:block;color:var(--muted);font-weight:600}
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 20px;border-radius:var(--r);font-size:14px;font-weight:600;border:1px solid var(--line2);background:transparent;color:var(--text);transition:background .15s,border-color .15s,box-shadow .2s,transform .1s;white-space:nowrap}
+.btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#d97a32);color:#1a0d04 !important;border-color:transparent;box-shadow:0 5px 18px var(--accent-glow)}
+.btn-primary:hover{background:linear-gradient(135deg,#f09d5a,var(--accent));box-shadow:0 8px 26px rgba(232,146,74,.38);border-color:transparent}
+.btn-lg{padding:14px 26px;font-size:15px;border-radius:var(--r-lg)}
 
-    .links{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .links a{
-      color:var(--muted);
-      padding:8px 10px;border-radius:12px;
-      border:1px solid transparent;
-    }
-    .links a:hover{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.08)}
+/* ===== HERO ===== */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding:60px 0 52px;align-items:center}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding:40px 0 36px}}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);background:rgba(232,146,74,.1);border:1px solid rgba(232,146,74,.2);padding:6px 12px;border-radius:99px;margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,5.8vw,66px);line-height:1.06;letter-spacing:-.5px;font-weight:900}
+.hero h1 em{font-style:italic;color:var(--accent-light)}
+.hero-tagline{margin-top:16px;color:var(--muted);font-size:16px;line-height:1.65;max-width:460px}
+.hero-quote{margin-top:22px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(232,146,74,.07);border-radius:0 var(--r) var(--r) 0;font-family:var(--serif);font-style:italic;font-size:14.5px;line-height:1.55;color:var(--accent-pale)}
+.hero-cta{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+.hero-pills{display:flex;flex-direction:column;gap:11px}
+.feat{display:flex;align-items:center;gap:13px;padding:16px 18px;background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);transition:border-color .2s,background .2s,transform .2s}
+.feat:hover{background:var(--bg-card-hover);border-color:var(--line2);transform:translateX(3px)}
+.feat-icon{width:42px;height:42px;flex-shrink:0;border-radius:12px;background:rgba(232,146,74,.12);display:grid;place-items:center;font-size:20px}
+.feat strong{display:block;font-size:14px;margin-bottom:3px}
+.feat span{font-size:12px;color:var(--muted)}
 
-    /* Language switch */
-    .lang{
-      display:flex;gap:8px;align-items:center;
-      padding:6px 8px;border:1px solid rgba(255,255,255,.10);
-      border-radius:14px;background:rgba(255,255,255,.04);
-    }
-    .lang label{font-size:12px;color:var(--muted)}
-    .lang select{
-      background:transparent;color:var(--text);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:10px;padding:6px 10px;
-      outline:none;
-    }
+/* ===== SECTION ===== */
+.section{padding:52px 0;border-top:1px solid var(--line)}
+.section-title{font-family:var(--serif);font-size:clamp(26px,3.8vw,38px);font-weight:700}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px;flex-wrap:wrap}
 
-    .hero{
-      display:grid;grid-template-columns:1.1fr .9fr;gap:26px;
-      padding:44px 0;
-    }
-    @media(max-width:900px){.hero{grid-template-columns:1fr}}
+/* ===== FILTER BAR ===== */
+.filter-bar{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.filter-search{flex:1;min-width:180px;max-width:300px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid var(--line2);border-radius:var(--r);padding:9px 14px;transition:border-color .15s,background .15s}
+.filter-search:focus-within{border-color:rgba(232,146,74,.45);background:rgba(255,255,255,.07)}
+.filter-search input{background:transparent;border:none;outline:none;font-family:var(--sans);font-size:14px;color:var(--text);width:100%}
+.filter-search input::placeholder{color:var(--muted2)}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{padding:7px 14px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);transition:background .15s,border-color .15s,color .15s}
+.chip:hover{background:rgba(255,255,255,.08);color:var(--text)}
+.chip.on{background:rgba(232,146,74,.15);border-color:rgba(232,146,74,.35);color:var(--accent-light)}
+.count-chip{font-size:11px;color:var(--muted2);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:99px;padding:4px 10px;margin-left:auto;align-self:center;white-space:nowrap}
 
-    .hero-card{
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    .hero-inner{padding:26px}
-    h1{margin:0 0 12px;font-size:clamp(28px,4vw,44px)}
-    .tagline{color:var(--muted)}
-    .quote{
-      margin-top:16px;padding:14px;
-      border:1px dashed rgba(255,179,107,.4);
-      border-radius:14px;
-      background:rgba(255,179,107,.1);
-    }
-    .cta-row{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      padding:12px 14px;border-radius:14px;
-      border:1px solid var(--line,
-      );
-      font-weight:700;
-      display:inline-flex;align-items:center;gap:8px;
-      cursor:pointer;
-      background:transparent;
-      color:inherit;
-    }
-    .btn.primary{
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#1b120a;
-      border-color:rgba(0,0,0,.08);
-    }
+/* ===== CATALOG GRID ===== */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+@media(max-width:1080px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:380px){.cat-grid{grid-template-columns:1fr}}
 
-    .mini{
-      padding:18px;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      margin-bottom:12px;
-    }
+/* skeleton */
+.card-skel{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.skel-img{aspect-ratio:4/3;background:rgba(255,255,255,.06);animation:pulse 1.6s ease-in-out infinite}
+.skel-ln{height:12px;border-radius:4px;background:rgba(255,255,255,.06);margin:14px 14px 0;animation:pulse 1.6s ease-in-out infinite}
+.skel-ln.s{width:55%;margin-top:8px}.skel-ln.x{width:35%;margin-top:8px;margin-bottom:14px}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 
-    .section{margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
-    .grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
-    }
-    @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.grid{grid-template-columns:1fr}}
+/* card */
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .22s var(--ease),border-color .2s,background .2s,box-shadow .2s;box-shadow:var(--shadow-card);will-change:transform;opacity:0;animation:cardIn .4s var(--ease) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-5px) scale(1.01);border-color:rgba(232,146,74,.38);background:var(--bg-card-hover);box-shadow:var(--shadow-lift),0 0 0 1px rgba(232,146,74,.12)}
+.card-img{position:relative;overflow:hidden;aspect-ratio:4/3;background:rgba(255,255,255,.03)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--ease)}
+.card:hover .card-img img{transform:scale(1.08)}
+.card-badge{position:absolute;top:8px;left:8px;background:rgba(13,11,8,.76);backdrop-filter:blur(6px);border:1px solid rgba(255,215,160,.15);border-radius:99px;padding:3px 9px;font-size:10px;font-weight:700;color:var(--accent-light);letter-spacing:.2px}
+.card-price-badge{position:absolute;bottom:8px;right:8px;background:rgba(13,11,8,.82);backdrop-filter:blur(8px);border:1px solid rgba(232,146,74,.2);border-radius:99px;padding:4px 11px;font-size:12px;font-weight:800;color:var(--accent-pale)}
+.card-hover{position:absolute;inset:0;background:rgba(13,11,8,.55);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;font-size:13px;font-weight:700;color:var(--accent-light);gap:6px;letter-spacing:.2px}
+.card:hover .card-hover{opacity:1}
+.card-body{padding:12px 13px;flex:1;display:flex;flex-direction:column;gap:5px}
+.card-name{font-weight:700;font-size:13.5px;line-height:1.3}
+.card-desc-preview{font-size:11.5px;color:var(--muted2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-footer{margin-top:auto;padding-top:9px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.card-price{font-weight:800;font-size:13px;color:var(--accent-pale)}
+.card-arrow{font-size:11px;font-weight:700;color:var(--muted2);transition:color .15s,transform .2s}
+.card:hover .card-arrow{color:var(--accent-light);transform:translateX(3px)}
+.no-results{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+.no-results strong{display:block;font-size:18px;margin-bottom:8px;color:var(--text)}
 
-    .card{
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      display:flex;flex-direction:column;
-      transition:transform .15s ease, border-color .15s ease, background .15s ease;
-    }
-    .card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,179,107,.35);
-      background:rgba(255,255,255,.06);
-    }
-    .card a.cover{display:block}
-    .card img{width:100%;height:160px;object-fit:cover;display:block}
-    .card-body{padding:14px;display:flex;flex-direction:column;gap:8px}
-    .card-title{font-weight:850}
-    .card-title a:hover{opacity:.95;text-decoration:underline}
-    .pill{
-      font-size:12px;color:var(--muted);
-      border:1px solid var(--line);
-      padding:6px 10px;border-radius:999px;width:fit-content;
-    }
-    .file{
-      font-size:12px;
-      color:rgba(255,255,255,.55);
-      border-left:2px solid rgba(255,179,107,.45);
-      padding-left:10px;
-      margin-top:2px;
-      word-break:break-all;
-    }
-    .price{
-      margin-top:auto;padding-top:10px;
-      border-top:1px solid var(--line);
-      display:flex;justify-content:space-between;
-      font-weight:800;color:#ffe7cf;
-    }
+/* ===== MODAL ===== */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(6,4,2,.87);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{position:relative;width:min(820px,100%);max-height:92vh;background:#1a1510;border:1px solid rgba(255,215,160,.13);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-modal);display:flex;flex-direction:column;transform:translateY(20px) scale(.97);transition:transform .28s var(--ease)}
+.overlay.open .modal{transform:none}
+.modal-split{display:flex;flex:0 0 auto}
+@media(min-width:620px){.modal-split{flex-direction:row;height:min(290px,36vh)}.modal-split-img{flex:0 0 50%;height:100%;object-fit:cover}.modal-split-right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px}}
+@media(max-width:619px){.modal-split{flex-direction:column}.modal-split-img{width:100%;height:200px;object-fit:cover}.modal-split-right{padding:18px 18px 0}}
+.modal-title{font-family:var(--serif);font-size:clamp(20px,3vw,27px);font-weight:700;line-height:1.15}
+.modal-pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;color:var(--muted);border:1px solid var(--line);padding:4px 11px;border-radius:99px;margin-top:8px}
+.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);font-size:16px;transition:background .15s,color .15s;z-index:2}
+.modal-close:hover{background:rgba(255,255,255,.18);color:var(--text)}
+.modal-body{padding:20px 22px;overflow-y:auto;flex:1}
+.modal-desc{color:var(--muted);font-size:14.5px;line-height:1.7;margin-bottom:18px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+@media(max-width:480px){.info-grid{grid-template-columns:1fr}}
+.info-box{padding:13px 15px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px}
+.info-box-label{font-size:10px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.info-box-val{font-size:13px;color:var(--muted);line-height:1.6}
+.info-box-val b{color:var(--accent-pale);font-weight:700}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.modal-actions .btn{flex:1;min-width:130px}
 
-    /* ====== VIEW DETALLE ====== */
-    .detail{
-      display:none;
-      margin-top:18px;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-    .detail.show{display:block}
-    .detail-hero{
-      width:100%;
-      height:min(420px, 55vh);
-      object-fit:cover;
-      display:block;
-    }
-    .detail-body{padding:18px}
-    .detail-title{margin:0 0 8px;font-size:clamp(24px,3.2vw,36px)}
-    .muted{color:var(--muted);line-height:1.5}
-    .detail-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:14px;
-    }
-    @media(max-width:760px){.detail-row{grid-template-columns:1fr}}
-    .box{
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:rgba(0,0,0,.12);
-    }
-    .box strong{display:block;margin-bottom:6px}
-    .detail-actions{
-      margin-top:16px;
-      display:flex;gap:10px;flex-wrap:wrap;
-    }
+/* ===== LANG OVERLAY ===== */
+.lang-overlay{position:fixed;inset:0;z-index:998;background:rgba(6,4,2,.94);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;padding:18px;transition:opacity .35s var(--ease)}
+.lang-overlay.gone{opacity:0;pointer-events:none}
+.lang-card{width:min(480px,100%);background:rgba(24,19,14,.97);border:1px solid rgba(255,215,160,.16);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 28px 72px rgba(0,0,0,.7);animation:cardIn .45s var(--ease) both}
+.lang-card-top{display:flex;align-items:center;gap:14px;padding:24px;border-bottom:1px solid var(--line)}
+.lang-card-body{padding:22px 24px}
+.lang-card-body p{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.lang-btns{display:flex;gap:10px}
+.lang-btns .btn{flex:1}
 
-    footer{margin-top:40px;border-top:1px solid var(--line);padding:20px}
-    .foot{display:flex;justify-content:space-between;flex-wrap:wrap;color:var(--muted)}
+/* ===== STEPS ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+@media(max-width:600px){.steps{grid-template-columns:1fr}}
+.step{padding:20px;background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);transition:border-color .2s,background .2s}
+.step:hover{background:var(--bg-card-hover);border-color:var(--line2)}
+.step-num{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#1a0d04;font-weight:800;font-size:14px;display:grid;place-items:center;margin-bottom:12px}
+.step strong{display:block;font-size:14px;font-weight:700;margin-bottom:4px}
+.step p{font-size:13px;color:var(--muted);line-height:1.55}
 
-    /* ====== Language overlay (before showing everything) ====== */
-    .overlay{
-      position:fixed;inset:0;z-index:9999;
-      background:rgba(0,0,0,.65);
-      backdrop-filter:blur(10px);
-      display:flex;align-items:center;justify-content:center;
-      padding:18px;
-    }
-    .overlay.hidden{display:none}
-    .overlay-card{
-      width:min(520px, 100%);
-      background:rgba(15,15,18,.88);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:20px;
-      box-shadow:0 24px 70px rgba(0,0,0,.45);
-      overflow:hidden;
-    }
-    .overlay-top{
-      padding:18px 18px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      display:flex;gap:12px;align-items:center;
-    }
-    .overlay-title{
-      font-weight:900;font-size:18px;line-height:1.2;
-    }
-    .overlay-body{padding:16px 18px}
-    .overlay-body p{margin:0 0 14px;color:var(--muted);line-height:1.5}
-    .overlay-actions{display:flex;gap:10px;flex-wrap:wrap}
-    .overlay-actions .btn{flex:1;justify-content:center}
-  </style>
+/* ===== CONTACT ===== */
+.contact-wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:22px 24px;background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:24px}
+.contact-info{flex:1}
+.contact-info p{font-size:15px;color:var(--muted);line-height:1.7}
+.contact-info strong{color:var(--text)}
+
+/* ===== FOOTER ===== */
+footer{border-top:1px solid var(--line);padding:22px 20px}
+.foot{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--muted)}
+.foot-brand{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--text)}
+
+/* ===== FLOATING WA ===== */
+.fab{position:fixed;bottom:24px;right:24px;z-index:150;width:54px;height:54px;border-radius:99px;background:linear-gradient(135deg,#25d366,#128c4e);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(37,211,102,.4);border:none;transition:transform .2s var(--ease),box-shadow .2s,opacity .3s;opacity:0}
+.fab:hover{transform:scale(1.1);box-shadow:0 10px 30px rgba(37,211,102,.55)}
+.fab:active{transform:scale(.95)}
+.fab svg{width:28px;height:28px}
+.fab-tip{position:absolute;right:62px;background:#1a1510;border:1px solid var(--line2);border-radius:var(--r);padding:7px 13px;font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;opacity:0;transform:translateX(6px);pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.fab:hover .fab-tip{opacity:1;transform:none}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(26,20,14,.97);border:1px solid rgba(232,146,74,.25);border-radius:var(--r);padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--accent-pale);z-index:400;transition:transform .3s var(--ease),opacity .3s;opacity:0;pointer-events:none;white-space:nowrap;box-shadow:0 8px 26px rgba(0,0,0,.5)}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.anim{animation:fadeUp .5s var(--ease) both}
+.anim2{animation:fadeUp .5s .12s var(--ease) both}
+</style>
 </head>
-
 <body>
 
-<!-- Overlay idioma -->
-<div id="langOverlay" class="overlay">
-  <div class="overlay-card">
-    <div class="overlay-top">
-      <div class="brand-badge" style="width:44px;height:44px;border-radius:14px;">MR</div>
+<!-- LANG OVERLAY -->
+<div id="langOverlay" class="lang-overlay" role="dialog" aria-modal="true">
+  <div class="lang-card">
+    <div class="lang-card-top">
+      <div class="brand-logo" style="width:46px;height:46px;border-radius:13px;font-size:14px">MR</div>
       <div>
-        <div class="overlay-title" id="ovTitle">Elige tu idioma</div>
-        <div style="color:var(--muted);font-size:13px" id="ovSub">Choose your language</div>
+        <div style="font-family:var(--serif);font-size:19px;font-weight:700" id="ovTitle">Elige tu idioma</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:2px" id="ovSub">Choose your language</div>
       </div>
     </div>
-    <div class="overlay-body">
-      <p id="ovText">Selecciona el idioma para ver el catálogo.</p>
-      <div class="overlay-actions">
-        <button class="btn primary" onclick="setLanguage('es', true)">Español</button>
-        <button class="btn primary" onclick="setLanguage('en', true)">English</button>
+    <div class="lang-card-body">
+      <p id="ovText">Selecciona el idioma para explorar el catálogo de velas artesanales.</p>
+      <div class="lang-btns">
+        <button class="btn btn-primary btn-lg" onclick="setLang('es',true)">🇨🇴 Español</button>
+        <button class="btn btn-lg" onclick="setLang('en',true)">🇺🇸 English</button>
       </div>
     </div>
   </div>
 </div>
 
-<header>
-  <div class="nav">
-    <div class="brand">
-      <div class="brand-badge">MR</div>
-      <div>
-        <span id="brandName">Mimita Remember</span>
-        <small id="brandTag">Velas artesanales & detalles con intención</small>
+<!-- PRODUCT MODAL -->
+<div id="modal" class="overlay" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+    <div class="modal-split">
+      <img id="mImg" class="modal-split-img" src="" alt="">
+      <div class="modal-split-right">
+        <h2 id="mTitle" class="modal-title"></h2>
+        <span id="mPill" class="modal-pill"></span>
       </div>
     </div>
-
-    <nav class="links">
-      <a href="#catalogo" id="navCatalog">Catálogo</a>
-      <a href="#como-pedir" id="navHow">Cómo pedir</a>
-      <a href="#contacto" id="navContact">Contacto</a>
-
-      <div class="lang" title="Language">
-        <label for="langSelect" id="langLabel">Idioma</label>
-        <select id="langSelect" onchange="setLanguage(this.value,false)">
-          <option value="es">ES</option>
-          <option value="en">EN</option>
-        </select>
+    <div class="modal-body">
+      <p id="mDesc" class="modal-desc"></p>
+      <div class="info-grid">
+        <div class="info-box"><div id="mL1" class="info-box-label">Precios</div><div id="mPrices" class="info-box-val"></div></div>
+        <div class="info-box"><div id="mL2" class="info-box-label">Personalización</div><div id="mCustom" class="info-box-val"></div></div>
+        <div class="info-box"><div id="mL3" class="info-box-label">Cómo usar</div><div id="mUse" class="info-box-val"></div></div>
+        <div class="info-box"><div id="mL4" class="info-box-label">Cómo pedir</div><div id="mHow" class="info-box-val"></div></div>
       </div>
+      <div class="modal-actions">
+        <a id="mWa" class="btn btn-primary" href="#" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.77.462 3.43 1.268 4.878L2 22l5.282-1.236A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.17c-1.624 0-3.14-.436-4.44-1.2l-.318-.19-3.136.733.757-3.04-.21-.33A8.147 8.147 0 013.83 12c0-4.508 3.666-8.17 8.17-8.17s8.17 3.662 8.17 8.17-3.666 8.17-8.17 8.17z"/></svg>
+          <span id="mWaLabel">Pedir por WhatsApp</span>
+        </a>
+        <button class="btn" onclick="closeModal()"><span id="mBack">← Volver</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING WA BUTTON -->
+<a class="fab" id="fab" href="https://wa.me/573108095915" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span class="fab-tip" id="fabTip">Pedir por WhatsApp</span>
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.77.462 3.43 1.268 4.878L2 22l5.282-1.236A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.17c-1.624 0-3.14-.436-4.44-1.2l-.318-.19-3.136.733.757-3.04-.21-.33A8.147 8.147 0 013.83 12c0-4.508 3.666-8.17 8.17-8.17s8.17 3.662 8.17 8.17-3.666 8.17-8.17 8.17z"/></svg>
+</a>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="nav">
+    <a href="#" class="brand">
+      <div class="brand-logo">MR</div>
+      <div>
+        <span>Mimita Remember</span>
+        <span class="brand-sub" id="brandTag">Velas artesanales con intención</span>
+      </div>
+    </a>
+    <nav class="nav-center">
+      <a href="#catalogo" id="nCat">Catálogo</a>
+      <a href="#como-pedir" id="nHow">Cómo pedir</a>
+      <a href="#contacto" id="nContact">Contacto</a>
     </nav>
+    <div class="nav-right">
+      <div class="lang-pill">
+        <button id="lEs" onclick="setLang('es',false)">ES</button>
+        <button id="lEn" onclick="setLang('en',false)">EN</button>
+      </div>
+      <button class="burger" id="burgerBtn" aria-label="Menú" aria-expanded="false" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#catalogo" onclick="closeMenu()" id="mnCat">Catálogo</a>
+  <a href="#como-pedir" onclick="closeMenu()" id="mnHow">Cómo pedir</a>
+  <a href="#contacto" onclick="closeMenu()" id="mnContact">Contacto</a>
+</nav>
 
 <main class="wrap">
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-card">
-    <div class="hero-inner">
-      <h1 id="heroTitle">Enciende una velita<br>e ilumina tu vida ✨</h1>
-      <p class="tagline" id="heroTagline">Velas artesanales para regalar, decorar y conectar.</p>
-      <div class="quote" id="heroQuote"><strong>Mimita Remember:</strong> una velita hecha con amor.</div>
-      <div class="cta-row">
-        <a class="btn primary" id="btnWhatsTop" href="https://wa.me/573108095915" target="_blank">Pedir por WhatsApp</a>
-        <a class="btn" id="btnCatalogTop" href="#catalogo">Ver catálogo</a>
-      </div>
+  <div class="anim">
+    <div class="hero-eyebrow" id="heroEye">🕯️ Velas artesanales colombianas</div>
+    <h1 id="heroTitle">Enciende una <em>velita</em><br>e ilumina tu vida ✨</h1>
+    <p class="hero-tagline" id="heroTag">Velas hechas con amor y parafina de calidad. Personalizables en color y aroma.</p>
+    <blockquote class="hero-quote" id="heroQuote">Una velita hecha con amor, pensada para ti.</blockquote>
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" id="heroWaBtn"
+         href="https://wa.me/573108095915?text=Hola%20Mimita%20Remember%2C%20quiero%20ver%20el%20cat%C3%A1logo%20%F0%9F%95%AF%EF%B8%8F"
+         target="_blank" rel="noopener">📲 <span id="heroWaLbl">Pedir por WhatsApp</span></a>
+      <a class="btn btn-lg" href="#catalogo" id="heroCatBtn">Ver catálogo ↓</a>
     </div>
   </div>
-
-  <div>
-    <div class="mini"><strong id="mini1t">Hechas con amor</strong><br><span id="mini1d">100% artesanales</span></div>
-    <div class="mini"><strong id="mini2t">Personalizables</strong><br><span id="mini2d">Colores y aromas</span></div>
-    <div class="mini"><strong id="mini3t">Precios claros</strong><br><span id="mini3d">Compra fácil</span></div>
+  <div class="hero-pills anim2">
+    <div class="feat"><div class="feat-icon">🕯️</div><div><strong id="f1t">Hechas con amor</strong><span id="f1d">100% artesanales, parafina de calidad</span></div></div>
+    <div class="feat"><div class="feat-icon">🎨</div><div><strong id="f2t">Personalizables</strong><span id="f2d">Elige color, aroma y tamaño</span></div></div>
+    <div class="feat"><div class="feat-icon">💰</div><div><strong id="f3t">Precios claros</strong><span id="f3d">Todos en pesos colombianos (COP)</span></div></div>
+    <div class="feat"><div class="feat-icon">📦</div><div><strong id="f4t">Envío Colombia</strong><span id="f4d">Coordinamos entrega contigo</span></div></div>
   </div>
 </section>
 
+<!-- CATALOG -->
 <section class="section" id="catalogo">
-  <h2 id="catalogTitle">Catálogo</h2>
-
-  <!-- DETALLE -->
-  <div id="detailView" class="detail" aria-live="polite">
-    <img id="detailImg" class="detail-hero" src="" alt="">
-    <div class="detail-body">
-      <h3 id="detailTitle" class="detail-title"></h3>
-      <div id="detailDesc" class="muted"></div>
-
-      <div id="detailPill" class="pill" style="margin-top:10px;"></div>
-
-      <div class="detail-row">
-        <div class="box">
-          <strong id="dBox1">Precios</strong>
-          <div id="detailPrices"></div>
-        </div>
-
-        <div class="box">
-          <strong id="dBox2">Personalización</strong>
-          <div id="detailCustom"></div>
-        </div>
-
-        <div class="box">
-          <strong id="dBox3">Recomendación de uso</strong>
-          <div id="detailUse"></div>
-        </div>
-
-        <div class="box">
-          <strong id="dBox4">Cómo pedir</strong>
-          <div id="detailHow"></div>
-        </div>
-      </div>
-
-      <div class="detail-actions">
-        <a id="detailWhats" class="btn primary" href="#" target="_blank">Pedir por WhatsApp</a>
-        <button class="btn" id="detailBack" onclick="closeDetail()">← Volver al catálogo</button>
-      </div>
+  <div class="section-head">
+    <h2 class="section-title" id="catTitle">Catálogo</h2>
+    <span class="count-chip" id="countChip">19 productos</span>
+  </div>
+  <div class="filter-bar">
+    <div class="filter-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="searchIn" type="search" autocomplete="off" placeholder="Buscar..." oninput="doFilter()">
     </div>
+    <div class="chips" id="chipsEl"></div>
   </div>
-
-  <!-- GRID -->
-  <div class="grid" id="catalogGrid">
-
-    <article class="card">
-      <a class="cover" href="#catalogo">
-        <img src="IMG mimitas remember/rosas.png" alt="Rosas maravillosas 10 cm" loading="lazy">
-      </a>
-      <div class="card-body">
-        <div class="card-title" id="pRosas">Rosas maravillosas</div>
-        <div class="pill" id="pRosasSize">10 cm</div>
-        <div class="file">Imagen: rosas.png</div>
-        <div class="price"><span>$12.000</span><span id="each1">c/u</span></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <a class="cover" href="#catalogo">
-        <img src="IMG mimitas remember/decorativas.png" alt="Velitas decorativas 8 cm" loading="lazy">
-      </a>
-      <div class="card-body">
-        <div class="card-title" id="pDecor">Velitas decorativas</div>
-        <div class="pill" id="pDecorSize">8 cm</div>
-        <div class="file">Imagen: decorativas.png</div>
-        <div class="price"><span>$12.000</span><span id="each2">c/u</span></div>
-      </div>
-    </article>
-
-    <!-- CORAZONES -->
-    <article class="card">
-      <a class="cover" href="#catalogo" onclick="openDetail('corazones'); return false;">
-        <img src="IMG mimitas remember/corazones.png" alt="Corazones 10 cm y 5 cm" loading="lazy">
-      </a>
-      <div class="card-body">
-        <div class="card-title">
-          <a href="#catalogo" onclick="openDetail('corazones'); return false;" id="pCor">Corazones</a>
-        </div>
-        <div class="pill" id="pCorSize">10 cm y 5 cm</div>
-        <div class="file">Imagen: corazones.png</div>
-        <div class="price"><span>$15.000 / $7.000</span><span id="each3">c/u</span></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <a class="cover" href="#catalogo">
-        <img src="IMG mimitas remember/estrellitas.png" alt="Estrellitas 12 cm" loading="lazy">
-      </a>
-      <div class="card-body">
-        <div class="card-title" id="pEst">Estrellitas</div>
-        <div class="pill" id="pEstSize">12 cm</div>
-        <div class="file">Imagen: estrellitas.png</div>
-        <div class="price"><span>$15.000</span><span id="each4">c/u</span></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <a class="cover" href="#catalogo">
-        <img src="IMG mimitas remember/bolitas.png" alt="Bolitas 8 cm" loading="lazy">
-      </a>
-      <div class="card-body">
-        <div class="card-title" id="pBol">Bolitas</div>
-        <div class="pill" id="pBolSize">8 cm</div>
-        <div class="file">Imagen: bolitas.png</div>
-        <div class="price"><span>$10.000</span><span id="each5">c/u</span></div>
-      </div>
-    </article>
-
-    <!-- VELONES -->
-    <article class="card">
-      <a class="cover" href="#catalogo" onclick="openDetail('velones'); return false;">
-        <img src="IMG mimitas remember/velones.png" alt="Velones 22 cm, 15 cm y multicolor 15 cm" loading="lazy">
-      </a>
-      <div class="card-body">
-        <div class="card-title">
-          <a href="#catalogo" onclick="openDetail('velones'); return false;" id="pVel">Velones</a>
-        </div>
-        <div class="pill" id="pVelSize">22 cm / 15 cm / 15 cm multicolor</div>
-        <div class="file">Imagen: velones.png</div>
-        <div class="price"><span>$25.000 / $20.000 / $20.000</span><span id="each6">c/u</span></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <a class="cover" href="#catalogo">
-        <img src="IMG mimitas remember/dedicatoria.png" alt="Velitas intencionadas" loading="lazy">
-      </a>
-      <div class="card-body">
-        <div class="card-title" id="pInt">Velitas intencionadas</div>
-        <div class="pill" id="pIntSize">Largas / Arbolitos</div>
-        <div class="file">Imagen: dedicatoria.png</div>
-        <div class="price"><span>$3.000</span><span id="each7">c/u</span></div>
-      </div>
-    </article>
-
-  </div>
+  <div class="cat-grid" id="catGrid"></div>
 </section>
 
+<!-- HOW TO ORDER -->
 <section class="section" id="como-pedir">
-  <h2 id="howTitle">Cómo pedir</h2>
-  <p id="howText">
-    1️⃣ Elige tu modelo<br>
-    2️⃣ Indica cantidad, color y aroma<br>
-    3️⃣ Confirmamos entrega
-  </p>
-  <a class="btn primary" id="howBtn" href="https://wa.me/573108095915" target="_blank">Escribir por WhatsApp</a>
+  <h2 class="section-title" style="margin-bottom:24px" id="howTitle">Cómo pedir</h2>
+  <div class="steps" id="stepsEl"></div>
+  <a class="btn btn-primary btn-lg" id="howWaBtn" href="https://wa.me/573108095915" target="_blank" rel="noopener">
+    📲 <span id="howWaLbl">Escribir por WhatsApp</span>
+  </a>
+  <p id="priceNote" style="margin-top:14px;font-size:13px;color:var(--muted)">Todos los precios están en pesos colombianos (COP).</p>
 </section>
 
+<!-- CONTACT -->
 <section class="section" id="contacto">
-  <h2 id="contactTitle">Contacto</h2>
-  <p id="contactText">📱 WhatsApp Colombia: <strong>+57 310 809 5915</strong><br>
-  🕘 Lun–Sáb 9am–7pm</p>
+  <h2 class="section-title" style="margin-bottom:20px" id="contactTitle">Contacto</h2>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <p id="contactText">📱 WhatsApp: <strong>+57 310 809 5915</strong><br>🕘 Lun–Sáb 9am–7pm</p>
+      <p id="contactNote" style="margin-top:6px;font-size:12px">Precios en COP.</p>
+    </div>
+    <a class="btn btn-primary" href="https://wa.me/573108095915" target="_blank" rel="noopener" id="contactWaBtn">📲 WhatsApp</a>
+  </div>
 </section>
+</main>
 
 <footer>
   <div class="foot">
-    <div><strong id="footBrand">Mimita Remember</strong></div>
-    <div>© <span id="year"></span> | <span id="footMade">Hecho con amor</span></div>
+    <span class="foot-brand">Mimita Remember</span>
+    <span id="footMade">Hecho con amor 🕯️</span>
+    <span>© <span id="yr"></span> · <span id="footCop">Precios en COP</span></span>
   </div>
 </footer>
 
-</main>
-
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+/* ── PRODUCTS ── */
+const P=[
+  {id:"rosas",      img:"img/rosas.png",            price:"COP 12.000",          sizes:"10 cm",             cat:"flores"},
+  {id:"decor",      img:"img/decorativas.png",       price:"COP 12.000",          sizes:"8 cm",              cat:"deco"},
+  {id:"corazones",  img:"img/corazones.png",         price:"COP 15.000/7.000",    sizes:"10 cm & 5 cm",      cat:"amor"},
+  {id:"estrellas",  img:"img/estrellitas.png",       price:"COP 15.000",          sizes:"12 cm",             cat:"deco"},
+  {id:"bolitas",    img:"img/bolitas.png",           price:"COP 10.000",          sizes:"8 cm",              cat:"deco"},
+  {id:"velones",    img:"img/velones.png",           price:"COP 25.000–20.000",   sizes:"22/15 cm",          cat:"velones"},
+  {id:"intencion",  img:"img/dedicatoria.png",       price:"COP 30.000",          sizes:"Largas/Arbolitos",  cat:"intencion"},
+  {id:"tresrosas",  img:"img/tresrosas.PNG",         price:"COP 15.000",          sizes:"5 cm × 3",          cat:"flores"},
+  {id:"rosaimp",    img:"img/rojaconrosas.PNG",      price:"COP 15.000",          sizes:"5 cm",              cat:"flores"},
+  {id:"luzfloral",  img:"img/grandesconflores.PNG",  price:"COP 30.000",          sizes:"10 cm",             cat:"flores"},
+  {id:"aura",       img:"img/rosaamarilla.PNG",      price:"COP 30.000",          sizes:"20–30 cm",          cat:"velones"},
+  {id:"cristal",    img:"img/cristal.PNG",           price:"COP 20.000",          sizes:"8 cm",              cat:"deco"},
+  {id:"trilogia",   img:"img/setdetres.PNG",         price:"COP 30.000 set",      sizes:"Set × 3",           cat:"sets"},
+  {id:"ondas",      img:"img/onduladas.PNG",         price:"COP 20.000",          sizes:"12 cm",             cat:"deco"},
+  {id:"carmesi",    img:"img/rojaenergetica.PNG",    price:"COP 15.000",          sizes:"8 cm",              cat:"intencion"},
+  {id:"perlaoval",  img:"img/texturaovalada.PNG",    price:"COP 12.000",          sizes:"8 cm",              cat:"deco"},
+  {id:"aurora",     img:"img/U.PNG",                 price:"COP 12.000",          sizes:"8 cm",              cat:"deco"},
+  {id:"ojoalma",    img:"img/ojoespiritual.PNG",     price:"COP 12.000",          sizes:"5 cm",              cat:"intencion"},
+  {id:"espiral",    img:"img/espiral.PNG",           price:"COP 10.000",          sizes:"5 cm",              cat:"intencion"},
+];
 
-  // ====== Textos por idioma ======
-  const I18N = {
-    es: {
-      htmlLang: "es",
-      title: "Mimita Remember | Velas Artesanales",
-      navCatalog: "Catálogo",
-      navHow: "Cómo pedir",
-      navContact: "Contacto",
-      langLabel: "Idioma",
-      heroTitle: "Enciende una velita<br>e ilumina tu vida ✨",
-      heroTagline: "Velas artesanales para regalar, decorar y conectar.",
-      heroQuote: "<strong>Mimita Remember:</strong> una velita hecha con amor.",
-      btnWhatsTop: "Pedir por WhatsApp",
-      btnCatalogTop: "Ver catálogo",
-      mini1t:"Hechas con amor", mini1d:"100% artesanales",
-      mini2t:"Personalizables", mini2d:"Colores y aromas",
-      mini3t:"Precios claros", mini3d:"Compra fácil",
-      catalogTitle:"Catálogo",
-      each:"c/u",
-      products:{
-        rosas:"Rosas maravillosas",
-        decor:"Velitas decorativas",
-        cor:"Corazones",
-        est:"Estrellitas",
-        bol:"Bolitas",
-        vel:"Velones",
-        int:"Velitas intencionadas",
-        rosasSize:"10 cm",
-        decorSize:"8 cm",
-        corSize:"10 cm y 5 cm",
-        estSize:"12 cm",
-        bolSize:"8 cm",
-        velSize:"22 cm / 15 cm / 15 cm multicolor",
-        intSize:"Largas / Arbolitos"
-      },
-      howTitle:"Cómo pedir",
-      howText:"1️⃣ Elige tu modelo<br>2️⃣ Indica cantidad, color y aroma<br>3️⃣ Confirmamos entrega",
-      howBtn:"Escribir por WhatsApp",
-      contactTitle:"Contacto",
-      contactText:"📱 WhatsApp Colombia: <strong>+57 310 809 5915</strong><br>🕘 Lun–Sáb 9am–7pm",
-      footMade:"Hecho con amor",
-      detail:{
-        box1:"Precios",
-        box2:"Personalización",
-        box3:"Recomendación de uso",
-        box4:"Cómo pedir",
-        back:"← Volver al catálogo",
-        whats:"Pedir por WhatsApp"
-      },
-      overlay:{
-        title:"Elige tu idioma",
-        sub:"Choose your language",
-        text:"Selecciona el idioma para ver el catálogo."
-      }
-    },
-    en: {
-      htmlLang: "en",
-      title: "Mimita Remember | Handmade Candles",
-      navCatalog: "Catalog",
-      navHow: "How to order",
-      navContact: "Contact",
-      langLabel: "Language",
-      heroTitle: "Light a candle<br>and brighten your life ✨",
-      heroTagline: "Handmade candles to gift, decorate and connect.",
-      heroQuote: "<strong>Mimita Remember:</strong> a candle made with love.",
-      btnWhatsTop: "Order on WhatsApp",
-      btnCatalogTop: "View catalog",
-      mini1t:"Made with love", mini1d:"100% handmade",
-      mini2t:"Customizable", mini2d:"Colors & scents",
-      mini3t:"Clear pricing", mini3d:"Easy ordering",
-      catalogTitle:"Catalog",
-      each:"each",
-      products:{
-        rosas:"Wonderful Roses",
-        decor:"Decorative mini candles",
-        cor:"Hearts",
-        est:"Little stars",
-        bol:"Bubbles",
-        vel:"Pillar candles",
-        int:"Intention candles",
-        rosasSize:"10 cm",
-        decorSize:"8 cm",
-        corSize:"10 cm & 5 cm",
-        estSize:"12 cm",
-        bolSize:"8 cm",
-        velSize:"22 cm / 15 cm / 15 cm multicolor",
-        intSize:"Long / Little trees"
-      },
-      howTitle:"How to order",
-      howText:"1️⃣ Choose your model<br>2️⃣ Tell us quantity, color and scent<br>3️⃣ We confirm delivery",
-      howBtn:"Message on WhatsApp",
-      contactTitle:"Contact",
-      contactText:"📱 WhatsApp Colombia: <strong>+57 310 809 5915</strong><br>🕘 Mon–Sat 9am–7pm",
-      footMade:"Made with love",
-      detail:{
-        box1:"Prices",
-        box2:"Customization",
-        box3:"How to use",
-        box4:"How to order",
-        back:"← Back to catalog",
-        whats:"Order on WhatsApp"
-      },
-      overlay:{
-        title:"Choose your language",
-        sub:"Elige tu idioma",
-        text:"Select a language to view the catalog."
-      }
+/* ── TRANSLATIONS ── */
+const T={
+  es:{
+    l:"es",doc:"Mimita Remember | Velas Artesanales",
+    brandTag:"Velas artesanales con intención",
+    nCat:"Catálogo",nHow:"Cómo pedir",nContact:"Contacto",
+    heroEye:"🕯️ Velas artesanales colombianas",
+    heroTitle:"Enciende una <em>velita</em><br>e ilumina tu vida ✨",
+    heroTag:"Velas hechas con amor y parafina de calidad. Personalizables en color y aroma.",
+    heroQuote:"Una velita hecha con amor, pensada para ti.",
+    heroWaLbl:"Pedir por WhatsApp",heroCatBtn:"Ver catálogo ↓",
+    f1t:"Hechas con amor",f1d:"100% artesanales, parafina de calidad",
+    f2t:"Personalizables",f2d:"Elige color, aroma y tamaño",
+    f3t:"Precios claros",f3d:"Todos en pesos colombianos (COP)",
+    f4t:"Envío Colombia",f4d:"Coordinamos entrega contigo",
+    catTitle:"Catálogo",searchPh:"Buscar...",viewD:"Ver detalles",
+    noR:"No encontramos esa vela 🕯️",noRs:"Intenta con otra búsqueda o escríbenos.",
+    cats:{all:"Todas",flores:"Flores 🌸",amor:"Amor ❤️",deco:"Decorativas ✨",velones:"Velones 🕯️",intencion:"Intención 🌿",sets:"Sets 🎁"},
+    howTitle:"Cómo pedir",howWaLbl:"Escribir por WhatsApp",
+    priceNote:"Todos los precios están en pesos colombianos (COP).",
+    contactTitle:"Contacto",
+    contactText:"📱 WhatsApp: <strong>+57 310 809 5915</strong><br>🕘 Lun–Sáb 9am–7pm",
+    contactNote:"Precios en COP.",contactWaBtn:"📲 WhatsApp",
+    footMade:"Hecho con amor 🕯️",footCop:"Precios en COP",
+    fabTip:"Pedir por WhatsApp",
+    steps:[
+      {n:"1",t:"Elige tu vela",p:"Explora el catálogo y encuentra la vela perfecta."},
+      {n:"2",t:"Cuéntanos tu pedido",p:"Indícanos cantidad, color, aroma y fecha de entrega."},
+      {n:"3",t:"Confirmamos juntos",p:"Confirmamos disponibilidad y acordamos la entrega."}
+    ],
+    mL1:"Precios",mL2:"Personalización",mL3:"Cómo usar",mL4:"Cómo pedir",
+    mWaLabel:"Pedir por WhatsApp",mBack:"← Volver",
+    ovTitle:"Elige tu idioma",ovSub:"Choose your language",
+    ovText:"Selecciona el idioma para explorar el catálogo.",
+    cnt:n=>`${n} producto${n===1?"":"s"}`,
+    pd:{
+      rosas:     {n:"Rosas Maravillosas",  d:"Delicadas velas en forma de rosa, perfectas para regalar en fechas especiales.",pr:"• Rosas 10 cm: <b>COP 12.000 c/u</b>",cu:"• Color a tu elección<br>• Aroma opcional<br>• Ideales para detalles",us:"• Superficie estable<br>• Lejos de corrientes de aire<br>• No dejar sin supervisión",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir ROSAS MARAVILLOSAS 🌹 - Cantidad: - Color: - Aroma: - Entrega:"},
+      decor:     {n:"Velitas Decorativas", d:"Mini velas para centros de mesa y eventos. Compactas y versátiles para cualquier ocasión.",pr:"• Velita 8 cm: <b>COP 12.000 c/u</b>",cu:"• Color a elección<br>• Aroma opcional<br>• Perfectas para eventos",us:"• Superficie estable<br>• Lejos de telas o papeles<br>• Siempre vigiladas",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir VELITAS DECORATIVAS 🕯️ - Cantidad: - Color: - Aroma: - Entrega:"},
+      corazones: {n:"Corazones",           d:"Velas en forma de corazón para San Valentín, aniversarios y detalles de amor. En dos tamaños.",pr:"• Corazón 10 cm: <b>COP 15.000</b><br>• Corazón 5 cm: <b>COP 7.000</b>",cu:"• Colores uno o varios tonos<br>• Aroma opcional<br>• Ideal para combos",us:"• Superficie estable y plana<br>• Lejos de corrientes de aire<br>• No dejar sin supervisión",ho:"1) Tamaño (10 cm o 5 cm)<br>2) Cantidad<br>3) Color(es) y aroma<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir CORAZONES ❤️ - Tamaño: (10cm/5cm) - Cantidad: - Color: - Aroma: - Entrega:"},
+      estrellas: {n:"Estrellitas",         d:"Velas con forma de estrella para decorar o regalar en cumpleaños. Forma única e inolvidable.",pr:"• Estrellita 12 cm: <b>COP 15.000 c/u</b>",cu:"• Color a elección<br>• Aroma opcional<br>• Ideales para celebraciones",us:"• Superficie estable<br>• Lejos de corrientes de aire<br>• Siempre vigiladas",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir ESTRELLITAS ⭐ - Cantidad: - Color: - Aroma: - Entrega:"},
+      bolitas:   {n:"Bolitas",             d:"Velas esféricas que crean ambientes acogedores. Hermosas solas o agrupadas.",pr:"• Bolita 8 cm: <b>COP 10.000 c/u</b>",cu:"• Color a elección<br>• Aroma opcional<br>• Lindas en grupos de 3+",us:"• Sobre plato o soporte adecuado<br>• Lejos de telas<br>• No dejar sin supervisión",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir BOLITAS 🔵 - Cantidad: - Color: - Aroma: - Entrega:"},
+      velones:   {n:"Velones",             d:"Velones clásicos y multicolores para decoración, altar, eventos y regalos especiales.",pr:"• Velón 22 cm: <b>COP 25.000</b><br>• Velón 15 cm: <b>COP 20.000</b><br>• Multicolor 15 cm: <b>COP 20.000</b>",cu:"• Colores incluye multicolor<br>• Aroma opcional<br>• Combos por intención disponibles",us:"• 1ra encendida: deja formar 'piscina' arriba<br>• Recorta la mecha si queda muy alta<br>• No dejar sin supervisión",ho:"1) Tamaño (22 cm o 15 cm)<br>2) Color/multicolor<br>3) Cantidad<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir VELONES 🕯️ - Tamaño: (22cm/15cm/multicolor) - Cantidad: - Color: - Aroma: - Entrega:"},
+      intencion: {n:"Velitas Intencionadas",d:"Velas con propósito: amor, prosperidad, calma o energía. Con dedicatoria personalizada.",pr:"• Velita intencionada: <b>COP 30.000</b>",cu:"• Color según intención<br>• Aroma y mensaje personalizados<br>• Largas y arbolitos",us:"• Enciéndela con intención<br>• Ambiente tranquilo<br>• No dejar sin supervisión",ho:"1) Intención deseada<br>2) Modelo (larga/arbolito)<br>3) Mensaje personalizado<br>4) Entrega",wa:"Hola Mimita Remember, quiero pedir VELITAS INTENCIONADAS ✨ - Intención: - Modelo: - Mensaje: - Entrega:"},
+      tresrosas: {n:"Trío de Rosas",       d:"Set de tres elegantes velas rosa de 5 cm. Presentación premium ideal para regalar.",pr:"• Trío de rosas (3 × 5 cm): <b>COP 15.000</b>",cu:"• Colores del trío a elección<br>• Aroma opcional<br>• Ideal como regalo completo",us:"• Superficie estable<br>• Lejos de corrientes de aire<br>• No dejar sin supervisión",ho:"1) Colores del trío<br>2) Aroma (opcional)<br>3) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir TRÍO DE ROSAS 🌹🌹🌹 - Colores: - Aroma: - Entrega:"},
+      rosaimp:   {n:"Rosa Imperial",       d:"Vela bolita de 5 cm con rosas en relieve. Elegante y sofisticada para personas especiales.",pr:"• Rosa Imperial 5 cm: <b>COP 15.000 c/u</b>",cu:"• Color a elección<br>• Aroma opcional<br>• Ideal para regalos premium",us:"• Superficie plana y estable<br>• Lejos de corrientes de aire<br>• Siempre vigilada",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir ROSA IMPERIAL 🌹 - Cantidad: - Color: - Aroma: - Entrega:"},
+      luzfloral: {n:"Luz Floral Premium",  d:"Grandes velas con flores en relieve de 10 cm. Lujo artesanal para centros de mesa.",pr:"• Luz Floral 10 cm: <b>COP 30.000 c/u</b>",cu:"• Color a elección<br>• Aroma opcional<br>• Máximo impacto decorativo",us:"• Superficie amplia y estable<br>• Lejos de telas<br>• Siempre vigilada",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir LUZ FLORAL PREMIUM 🌸 - Cantidad: - Color: - Aroma: - Entrega:"},
+      aura:      {n:"Aura Dorada",         d:"Majestuosas velas de 20–30 cm en tonos cálidos. Presencia imponente para decoraciones importantes.",pr:"• Aura Dorada (20–30 cm): <b>COP 30.000</b>",cu:"• Tonos cálidos disponibles<br>• Aroma opcional<br>• Ideal para bodas y eventos",us:"• Soporte firme y amplio<br>• Primera encendida larga para 'piscina'<br>• No dejar sin supervisión",ho:"1) Altura (20 o 30 cm)<br>2) Color<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir AURA DORADA ✨ - Altura: (20/30cm) - Color: - Aroma: - Entrega:"},
+      cristal:   {n:"Cristal de Luz",      d:"Velas de 8 cm con acabado translúcido que proyectan luz cálida y envolvente.",pr:"• Cristal de Luz 8 cm: <b>COP 20.000 c/u</b>",cu:"• Tonos cristal disponibles<br>• Aroma opcional<br>• Perfectas para spa",us:"• Superficie plana y limpia<br>• Lejos de telas<br>• Siempre vigiladas",ho:"1) Cantidad<br>2) Tono preferido<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir CRISTAL DE LUZ 💎 - Cantidad: - Tono: - Aroma: - Entrega:"},
+      trilogia:  {n:"Trilogía de Luz",     d:"Set de 3 velas coordinadas para decorar juntas. Formas y colores complementarios.",pr:"• Set de 3 velas: <b>COP 30.000</b> las tres",cu:"• Colores y formas del set<br>• Aroma opcional<br>• Presentación regalo incluida",us:"• Acomódalas en grupo<br>• Superficies estables<br>• Siempre vigiladas",ho:"1) Preferencia de colores<br>2) Aroma (opcional)<br>3) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir TRILOGÍA DE LUZ 🕯️🕯️🕯️ - Colores: - Aroma: - Entrega:"},
+      ondas:     {n:"Ondas de Color",      d:"Velas de 12 cm con textura ondulada. Efecto visual único en colores vibrantes y pasteles.",pr:"• Ondas de Color 12 cm: <b>COP 20.000 c/u</b>",cu:"• Amplia paleta de colores<br>• Aroma opcional<br>• Perfectas para decoración moderna",us:"• Superficie estable y plana<br>• Lejos de corrientes de aire<br>• Siempre vigiladas",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir ONDAS DE COLOR 🌊 - Cantidad: - Color: - Aroma: - Entrega:"},
+      carmesi:   {n:"Energía Carmesí",     d:"Velas rojas de 8 cm cargadas de energía y pasión. Ideales para rituales o decoración audaz.",pr:"• Energía Carmesí 8 cm: <b>COP 15.000 c/u</b>",cu:"• Rojo y variantes<br>• Aroma opcional<br>• Ideal para rituales de energía",us:"• Superficie estable<br>• Ambiente tranquilo<br>• Siempre vigilada",ho:"1) Cantidad<br>2) Aroma (opcional)<br>3) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir ENERGÍA CARMESÍ ❤️‍🔥 - Cantidad: - Aroma: - Entrega:"},
+      perlaoval: {n:"Perla Oval",          d:"Elegantes velas ovaladas de 8 cm con acabado suave tipo perla. Sofisticadas y atemporales.",pr:"• Perla Oval 8 cm: <b>COP 12.000 c/u</b>",cu:"• Tonos perla y nácar<br>• Aroma opcional<br>• Muy elegantes para regalos",us:"• Superficie plana<br>• Lejos de telas<br>• Siempre vigiladas",ho:"1) Cantidad<br>2) Tono preferido<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir PERLA OVAL 🫧 - Cantidad: - Tono: - Aroma: - Entrega:"},
+      aurora:    {n:"Llama Aurora",        d:"Velas de 8 cm con forma orgánica que evocan la llama. Cada pieza es única.",pr:"• Llama Aurora 8 cm: <b>COP 12.000 c/u</b>",cu:"• Colores naturales disponibles<br>• Aroma opcional<br>• Cada pieza es única",us:"• Superficie estable<br>• Lejos de corrientes de aire<br>• Siempre vigiladas",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir LLAMA AURORA 🔥 - Cantidad: - Color: - Aroma: - Entrega:"},
+      ojoalma:   {n:"Ojo del Alma",        d:"Velas de 5 cm con el símbolo del ojo espiritual. Protección e intuición en una pieza artesanal.",pr:"• Ojo del Alma 5 cm: <b>COP 12.000 c/u</b>",cu:"• Colores espirituales<br>• Aroma opcional<br>• Cargadas de intención",us:"• Superficie plana<br>• Ambiente tranquilo<br>• Siempre vigilada",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir OJO DEL ALMA 🧿 - Cantidad: - Color: - Aroma: - Entrega:"},
+      espiral:   {n:"Espiral de Luz",      d:"Velas de 5 cm en forma espiral que simbolizan crecimiento. Meditación y decoración en una pieza.",pr:"• Espiral de Luz 5 cm: <b>COP 10.000 c/u</b>",cu:"• Colores vibracionales<br>• Aroma opcional<br>• Perfectas para meditación",us:"• Superficie estable<br>• Uso en meditación<br>• Siempre vigiladas",ho:"1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega",wa:"Hola Mimita Remember, quiero pedir ESPIRAL DE LUZ 🌀 - Cantidad: - Color: - Aroma: - Entrega:"},
     }
-  };
-
-  // ====== Detalles (ES/EN) ======
-  const DETAILS = {
-    corazones: {
-      es: {
-        title: "Corazones",
-        img: "IMG mimitas remember/corazones.png",
-        pill: "Tamaños: 10 cm y 5 cm",
-        desc: "Velitas decorativas en forma de corazón, ideales para regalo, detalles de pareja, fechas especiales y decoración.",
-        prices: "• Corazón 10 cm: <b>$15.000</b> c/u<br>• Corazón 5 cm: <b>$7.000</b> c/u",
-        custom: "• Colores (uno o varios tonos)<br>• Aroma (si aplica)<br>• Ideal para combos / recordatorios",
-        use: "• Úsala en superficie estable<br>• Mantén lejos de corrientes de aire<br>• No la dejes sin supervisión",
-        how: "1) Tamaño (10 cm o 5 cm)<br>2) Cantidad<br>3) Color(es) y aroma<br>4) Entrega (fecha / lugar)",
-        waText: "Hola Mimita Remember, quiero pedir CORAZONES. Tamaño: (10cm/5cm) - Cantidad: - Color: - Aroma: - Entrega:"
-      },
-      en: {
-        title: "Hearts",
-        img: "IMG mimitas remember/corazones.png",
-        pill: "Sizes: 10 cm & 5 cm",
-        desc: "Heart-shaped decorative candles, perfect for gifts, special dates and home decor.",
-        prices: "• Heart 10 cm: <b>$15.000</b> each<br>• Heart 5 cm: <b>$7.000</b> each",
-        custom: "• Colors (single or multi-tone)<br>• Scent (if applicable)<br>• Great for bundles / party favors",
-        use: "• Use on a stable surface<br>• Keep away from drafts<br>• Never leave unattended",
-        how: "1) Size (10 cm or 5 cm)<br>2) Quantity<br>3) Color(s) and scent<br>4) Delivery (date / place)",
-        waText: "Hi Mimita Remember, I want to order HEARTS. Size: (10cm/5cm) - Quantity: - Color: - Scent: - Delivery:"
-      }
-    },
-    velones: {
-      es: {
-        title: "Velones",
-        img: "IMG mimitas remember/velones.png",
-        pill: "Opciones: 22 cm / 15 cm / 15 cm multicolor",
-        desc: "Velones clásicos y multicolores, perfectos para decoración, intención, altar, eventos y regalos.",
-        prices: "• Velón 22 cm: <b>$25.000</b> c/u<br>• Velón 15 cm: <b>$20.000</b> c/u<br>• Velón 15 cm multicolor: <b>$20.000</b> c/u",
-        custom: "• Colores (incluye multicolor)<br>• Aroma (si aplica)<br>• Ideal para combos por intención",
-        use: "• Primera encendida: deja formar “piscina” arriba<br>• Recorta la mecha si queda muy alta<br>• No la dejes sin supervisión",
-        how: "1) Tamaño (22 cm o 15 cm)<br>2) Cantidad<br>3) Color / multicolor<br>4) Entrega (fecha / lugar)",
-        waText: "Hola Mimita Remember, quiero pedir VELONES. Tamaño: (22cm/15cm/15cm multicolor) - Cantidad: - Color: - Aroma: - Entrega:"
-      },
-      en: {
-        title: "Pillar candles",
-        img: "IMG mimitas remember/velones.png",
-        pill: "Options: 22 cm / 15 cm / 15 cm multicolor",
-        desc: "Classic and multicolor pillar candles—great for decor, intention, events and gifts.",
-        prices: "• Pillar 22 cm: <b>$25.000</b> each<br>• Pillar 15 cm: <b>$20.000</b> each<br>• Pillar 15 cm multicolor: <b>$20.000</b> each",
-        custom: "• Colors (including multicolor)<br>• Scent (if applicable)<br>• Great for intention bundles",
-        use: "• First burn: let a top “melt pool” form<br>• Trim the wick if it gets too tall<br>• Never leave unattended",
-        how: "1) Size (22 cm or 15 cm)<br>2) Quantity<br>3) Color / multicolor<br>4) Delivery (date / place)",
-        waText: "Hi Mimita Remember, I want to order PILLAR CANDLES. Size: (22cm/15cm/15cm multicolor) - Quantity: - Color: - Scent: - Delivery:"
-      }
-    }
-  };
-
-  let CURRENT_LANG = "es";
-
-  function applyLanguage(lang){
-    const t = I18N[lang] || I18N.es;
-    CURRENT_LANG = lang;
-
-    document.documentElement.lang = t.htmlLang;
-    document.title = t.title;
-
-    // Nav
-    document.getElementById("navCatalog").textContent = t.navCatalog;
-    document.getElementById("navHow").textContent = t.navHow;
-    document.getElementById("navContact").textContent = t.navContact;
-    document.getElementById("langLabel").textContent = t.langLabel;
-
-    // Hero
-    document.getElementById("heroTitle").innerHTML = t.heroTitle;
-    document.getElementById("heroTagline").textContent = t.heroTagline;
-    document.getElementById("heroQuote").innerHTML = t.heroQuote;
-    document.getElementById("btnWhatsTop").textContent = t.btnWhatsTop;
-    document.getElementById("btnCatalogTop").textContent = t.btnCatalogTop;
-
-    // Minis
-    document.getElementById("mini1t").textContent = t.mini1t;
-    document.getElementById("mini1d").textContent = t.mini1d;
-    document.getElementById("mini2t").textContent = t.mini2t;
-    document.getElementById("mini2d").textContent = t.mini2d;
-    document.getElementById("mini3t").textContent = t.mini3t;
-    document.getElementById("mini3d").textContent = t.mini3d;
-
-    // Sections
-    document.getElementById("catalogTitle").textContent = t.catalogTitle;
-    document.getElementById("howTitle").textContent = t.howTitle;
-    document.getElementById("howText").innerHTML = t.howText;
-    document.getElementById("howBtn").textContent = t.howBtn;
-    document.getElementById("contactTitle").textContent = t.contactTitle;
-    document.getElementById("contactText").innerHTML = t.contactText;
-
-    // Footer
-    document.getElementById("footMade").textContent = t.footMade;
-
-    // Catalog labels each
-    document.getElementById("each1").textContent = t.each;
-    document.getElementById("each2").textContent = t.each;
-    document.getElementById("each3").textContent = t.each;
-    document.getElementById("each4").textContent = t.each;
-    document.getElementById("each5").textContent = t.each;
-    document.getElementById("each6").textContent = t.each;
-    document.getElementById("each7").textContent = t.each;
-
-    // Product names & sizes
-    const p = t.products;
-    document.getElementById("pRosas").textContent = p.rosas;
-    document.getElementById("pDecor").textContent = p.decor;
-    document.getElementById("pCor").textContent = p.cor;
-    document.getElementById("pEst").textContent = p.est;
-    document.getElementById("pBol").textContent = p.bol;
-    document.getElementById("pVel").textContent = p.vel;
-    document.getElementById("pInt").textContent = p.int;
-
-    document.getElementById("pRosasSize").textContent = p.rosasSize;
-    document.getElementById("pDecorSize").textContent = p.decorSize;
-    document.getElementById("pCorSize").textContent = p.corSize;
-    document.getElementById("pEstSize").textContent = p.estSize;
-    document.getElementById("pBolSize").textContent = p.bolSize;
-    document.getElementById("pVelSize").textContent = p.velSize;
-    document.getElementById("pIntSize").textContent = p.intSize;
-
-    // Detail boxes + buttons
-    document.getElementById("dBox1").textContent = t.detail.box1;
-    document.getElementById("dBox2").textContent = t.detail.box2;
-    document.getElementById("dBox3").textContent = t.detail.box3;
-    document.getElementById("dBox4").textContent = t.detail.box4;
-    document.getElementById("detailBack").textContent = t.detail.back;
-    document.getElementById("detailWhats").textContent = t.detail.whats;
-
-    // Overlay texts (for future if shown)
-    document.getElementById("ovTitle").textContent = t.overlay.title;
-    document.getElementById("ovSub").textContent = t.overlay.sub;
-    document.getElementById("ovText").textContent = t.overlay.text;
-
-    // If detail is open, refresh it
-    const openKey = window.__OPEN_DETAIL_KEY;
-    if(openKey){
-      openDetail(openKey, true);
+  },
+  en:{
+    l:"en",doc:"Mimita Remember | Handmade Candles",
+    brandTag:"Handmade candles with intention",
+    nCat:"Catalog",nHow:"How to order",nContact:"Contact",
+    heroEye:"🕯️ Colombian handmade candles",
+    heroTitle:"Light a <em>candle</em><br>and brighten your life ✨",
+    heroTag:"Candles made with love and premium wax. Customizable in color and scent.",
+    heroQuote:"A candle made with love, designed just for you.",
+    heroWaLbl:"Order on WhatsApp",heroCatBtn:"View catalog ↓",
+    f1t:"Made with love",f1d:"100% handmade, premium paraffin",
+    f2t:"Customizable",f2d:"Choose color, scent and size",
+    f3t:"Clear pricing",f3d:"All prices in Colombian pesos (COP)",
+    f4t:"Colombia delivery",f4d:"We arrange delivery together",
+    catTitle:"Catalog",searchPh:"Search...",viewD:"View details",
+    noR:"No candles found 🕯️",noRs:"Try a different search or message us.",
+    cats:{all:"All",flores:"Flowers 🌸",amor:"Love ❤️",deco:"Decorative ✨",velones:"Pillars 🕯️",intencion:"Intention 🌿",sets:"Sets 🎁"},
+    howTitle:"How to order",howWaLbl:"Message on WhatsApp",
+    priceNote:"All prices are in Colombian pesos (COP).",
+    contactTitle:"Contact",
+    contactText:"📱 WhatsApp: <strong>+57 310 809 5915</strong><br>🕘 Mon–Sat 9am–7pm",
+    contactNote:"Prices in COP.",contactWaBtn:"📲 WhatsApp",
+    footMade:"Made with love 🕯️",footCop:"Prices in COP",
+    fabTip:"Order on WhatsApp",
+    steps:[
+      {n:"1",t:"Choose your candle",p:"Browse the catalog and find your perfect candle."},
+      {n:"2",t:"Send your order",p:"Tell us quantity, color, scent and delivery date."},
+      {n:"3",t:"We confirm",p:"We confirm availability and arrange delivery together."}
+    ],
+    mL1:"Prices",mL2:"Customization",mL3:"How to use",mL4:"How to order",
+    mWaLabel:"Order on WhatsApp",mBack:"← Back",
+    ovTitle:"Choose your language",ovSub:"Elige tu idioma",
+    ovText:"Select a language to browse the catalog.",
+    cnt:n=>`${n} product${n===1?"":"s"}`,
+    pd:{
+      rosas:     {n:"Wonderful Roses",        d:"Delicate rose-shaped candles, perfect for gifting on special occasions.",pr:"• Roses 10 cm: <b>COP 12.000 each</b>",cu:"• Color of your choice<br>• Optional scent<br>• Perfect for gifts",us:"• Stable flat surface<br>• Away from drafts<br>• Never leave unattended",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order WONDERFUL ROSES 🌹 - Quantity: - Color: - Scent: - Delivery:"},
+      decor:     {n:"Decorative Mini Candles",d:"Mini candles for centerpieces and events. Compact and versatile for any occasion.",pr:"• Mini candle 8 cm: <b>COP 12.000 each</b>",cu:"• Color of your choice<br>• Optional scent<br>• Great for events",us:"• Stable surface<br>• Away from fabrics<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order DECORATIVE MINI CANDLES 🕯️ - Quantity: - Color: - Scent: - Delivery:"},
+      corazones: {n:"Hearts",                 d:"Heart-shaped candles for Valentine's Day, anniversaries and love gifts. Two sizes available.",pr:"• Heart 10 cm: <b>COP 15.000</b><br>• Heart 5 cm: <b>COP 7.000</b>",cu:"• Colors single or multi-tone<br>• Optional scent<br>• Great for bundles",us:"• Stable flat surface<br>• Away from drafts<br>• Never leave unattended",ho:"1) Size (10 cm or 5 cm)<br>2) Quantity<br>3) Color(s) & scent<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order HEARTS ❤️ - Size: (10cm/5cm) - Quantity: - Color: - Scent: - Delivery:"},
+      estrellas: {n:"Little Stars",           d:"Star-shaped candles to decorate or gift for birthdays. A truly memorable shape.",pr:"• Little star 12 cm: <b>COP 15.000 each</b>",cu:"• Color of your choice<br>• Optional scent<br>• Perfect for celebrations",us:"• Stable surface<br>• Away from drafts<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order LITTLE STARS ⭐ - Quantity: - Color: - Scent: - Delivery:"},
+      bolitas:   {n:"Bubbles",                d:"Spherical candles that create cozy atmospheres. Beautiful alone or grouped.",pr:"• Bubble 8 cm: <b>COP 10.000 each</b>",cu:"• Color of your choice<br>• Optional scent<br>• Beautiful in groups of 3+",us:"• On a plate or proper holder<br>• Away from fabrics<br>• Never leave unattended",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order BUBBLES 🔵 - Quantity: - Color: - Scent: - Delivery:"},
+      velones:   {n:"Pillar Candles",         d:"Classic and multicolor pillars for decor, altar, events and special gifts.",pr:"• Pillar 22 cm: <b>COP 25.000</b><br>• Pillar 15 cm: <b>COP 20.000</b><br>• Multicolor 15 cm: <b>COP 20.000</b>",cu:"• Colors including multicolor<br>• Optional scent<br>• Intention bundles available",us:"• 1st burn: let a top melt pool form<br>• Trim wick if too tall<br>• Never leave unattended",ho:"1) Size (22 cm or 15 cm)<br>2) Color/multicolor<br>3) Quantity<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order PILLAR CANDLES 🕯️ - Size: (22cm/15cm/multicolor) - Quantity: - Color: - Scent: - Delivery:"},
+      intencion: {n:"Intention Candles",      d:"Candles with purpose: love, prosperity, calm or energy. With personalized dedication.",pr:"• Intention candle: <b>COP 30.000</b>",cu:"• Color by intention<br>• Custom scent & message<br>• Long or tree-shaped",us:"• Light with intention and focus<br>• Peaceful environment<br>• Never leave unattended",ho:"1) Desired intention<br>2) Model (long/tree)<br>3) Personal message<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order INTENTION CANDLES ✨ - Intention: - Model: - Message: - Delivery:"},
+      tresrosas: {n:"Rose Trio",              d:"Set of three elegant 5 cm rose candles. Premium presentation, ideal for gifting.",pr:"• Rose trio (3 × 5 cm): <b>COP 15.000</b>",cu:"• Trio colors of your choice<br>• Optional scent<br>• Ideal complete gift",us:"• Stable surface<br>• Away from drafts<br>• Never leave unattended",ho:"1) Trio colors<br>2) Scent (optional)<br>3) Delivery date",wa:"Hi Mimita Remember, I want to order ROSE TRIO 🌹🌹🌹 - Colors: - Scent: - Delivery:"},
+      rosaimp:   {n:"Imperial Rose",          d:"A 5 cm ball candle with embossed roses. Elegant and sophisticated for special people.",pr:"• Imperial Rose 5 cm: <b>COP 15.000 each</b>",cu:"• Color of your choice<br>• Optional scent<br>• Ideal premium gift",us:"• Flat stable surface<br>• Away from drafts<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order IMPERIAL ROSE 🌹 - Quantity: - Color: - Scent: - Delivery:"},
+      luzfloral: {n:"Premium Floral Light",   d:"Large 10 cm candles with embossed flowers. Artisanal luxury for centerpieces.",pr:"• Premium Floral 10 cm: <b>COP 30.000 each</b>",cu:"• Color of your choice<br>• Optional scent<br>• Maximum decorative impact",us:"• Wide stable surface<br>• Away from fabrics<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order PREMIUM FLORAL LIGHT 🌸 - Quantity: - Color: - Scent: - Delivery:"},
+      aura:      {n:"Golden Aura",            d:"Majestic 20–30 cm candles in warm tones. Imposing presence for important decorations.",pr:"• Golden Aura (20–30 cm): <b>COP 30.000</b>",cu:"• Warm tones available<br>• Optional scent<br>• Ideal for weddings & events",us:"• Firm wide support<br>• Long first burn to form melt pool<br>• Never leave unattended",ho:"1) Height (20 or 30 cm)<br>2) Color<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order GOLDEN AURA ✨ - Height: (20/30cm) - Color: - Scent: - Delivery:"},
+      cristal:   {n:"Crystal Light",          d:"8 cm candles with a translucent finish that projects warm, enveloping light.",pr:"• Crystal Light 8 cm: <b>COP 20.000 each</b>",cu:"• Crystal tones available<br>• Optional scent<br>• Perfect for spa atmosphere",us:"• Flat clean surface<br>• Away from fabrics<br>• Always supervised",ho:"1) Quantity<br>2) Preferred tone<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order CRYSTAL LIGHT 💎 - Quantity: - Tone: - Scent: - Delivery:"},
+      trilogia:  {n:"Light Trilogy",          d:"Set of 3 coordinated candles to display together. Complementary shapes and colors.",pr:"• Set of 3 candles: <b>COP 30.000</b> for all three",cu:"• Colors and shapes of the set<br>• Optional scent<br>• Gift presentation included",us:"• Arrange as a group<br>• Stable surfaces<br>• Always supervised",ho:"1) Color preference<br>2) Scent (optional)<br>3) Delivery date",wa:"Hi Mimita Remember, I want to order LIGHT TRILOGY 🕯️🕯️🕯️ - Colors: - Scent: - Delivery:"},
+      ondas:     {n:"Waves of Color",         d:"12 cm wavy-textured candles. Unique visual effect in vibrant and pastel colors.",pr:"• Waves of Color 12 cm: <b>COP 20.000 each</b>",cu:"• Wide color palette<br>• Optional scent<br>• Perfect for modern decor",us:"• Stable flat surface<br>• Away from drafts<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order WAVES OF COLOR 🌊 - Quantity: - Color: - Scent: - Delivery:"},
+      carmesi:   {n:"Crimson Energy",         d:"Red 8 cm candles full of energy and passion. Ideal for rituals or bold decoration.",pr:"• Crimson Energy 8 cm: <b>COP 15.000 each</b>",cu:"• Red and variants available<br>• Optional scent<br>• Ideal for energy rituals",us:"• Stable surface<br>• Peaceful environment<br>• Always supervised",ho:"1) Quantity<br>2) Scent (optional)<br>3) Delivery date",wa:"Hi Mimita Remember, I want to order CRIMSON ENERGY ❤️‍🔥 - Quantity: - Scent: - Delivery:"},
+      perlaoval: {n:"Oval Pearl",             d:"Elegant 8 cm oval candles with a soft pearl-like finish. Sophisticated and timeless.",pr:"• Oval Pearl 8 cm: <b>COP 12.000 each</b>",cu:"• Pearl and nacre tones<br>• Optional scent<br>• Very elegant as gifts",us:"• Flat surface<br>• Away from fabrics<br>• Always supervised",ho:"1) Quantity<br>2) Preferred tone<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order OVAL PEARL 🫧 - Quantity: - Tone: - Scent: - Delivery:"},
+      aurora:    {n:"Aurora Flame",           d:"Organic 8 cm flame-shaped candles. Each piece is unique, like the nature that inspires them.",pr:"• Aurora Flame 8 cm: <b>COP 12.000 each</b>",cu:"• Natural colors available<br>• Optional scent<br>• Each piece is unique",us:"• Stable surface<br>• Away from drafts<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order AURORA FLAME 🔥 - Quantity: - Color: - Scent: - Delivery:"},
+      ojoalma:   {n:"Eye of the Soul",        d:"5 cm candles with the spiritual eye symbol. Protection and positive energy in one piece.",pr:"• Eye of the Soul 5 cm: <b>COP 12.000 each</b>",cu:"• Spiritual colors available<br>• Optional scent<br>• Charged with intention",us:"• Flat surface<br>• Peaceful environment<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order EYE OF THE SOUL 🧿 - Quantity: - Color: - Scent: - Delivery:"},
+      espiral:   {n:"Spiral of Light",        d:"Small 5 cm spiral candles symbolizing growth and transformation. Meditation in one piece.",pr:"• Spiral of Light 5 cm: <b>COP 10.000 each</b>",cu:"• Vibrational colors available<br>• Optional scent<br>• Perfect for meditation",us:"• Stable surface<br>• During meditation or rest<br>• Always supervised",ho:"1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date",wa:"Hi Mimita Remember, I want to order SPIRAL OF LIGHT 🌀 - Quantity: - Color: - Scent: - Delivery:"},
     }
   }
+};
 
-  function setLanguage(lang, fromOverlay){
-    localStorage.setItem("mr_lang", lang);
-    document.getElementById("langSelect").value = lang;
-    applyLanguage(lang);
+/* ── STATE ── */
+let LANG='es', CAT='all', Q='';
 
-    if(fromOverlay){
-      document.getElementById("langOverlay").classList.add("hidden");
+/* ── CATALOG ── */
+const CAT_KEYS=['all','flores','amor','deco','velones','intencion','sets'];
+
+function renderCatalog(){
+  const t=T[LANG], grid=document.getElementById('catGrid');
+  grid.innerHTML=Array(8).fill(`<div class="card-skel"><div class="skel-img"></div><div class="skel-ln"></div><div class="skel-ln s"></div><div class="skel-ln x"></div></div>`).join('');
+  setTimeout(()=>{
+    grid.innerHTML='';
+    const q=Q.toLowerCase().trim();
+    const vis=P.filter(p=>{
+      const pd=t.pd[p.id];if(!pd)return false;
+      return(CAT==='all'||p.cat===CAT)&&(!q||pd.n.toLowerCase().includes(q)||pd.d.toLowerCase().includes(q));
+    });
+    document.getElementById('countChip').textContent=t.cnt(vis.length);
+    if(!vis.length){
+      grid.innerHTML=`<div class="no-results"><strong>${t.noR}</strong><p>${t.noRs}</p></div>`;
+      return;
     }
+    vis.forEach((p,i)=>{
+      const pd=t.pd[p.id];
+      const c=document.createElement('article');
+      c.className='card';c.style.animationDelay=`${i*0.04}s`;
+      c.setAttribute('role','button');c.setAttribute('tabindex','0');c.setAttribute('aria-label',pd.n);
+      c.innerHTML=`
+        <div class="card-img">
+          <img src="${p.img}" alt="${pd.n}" loading="lazy" decoding="async">
+          <span class="card-badge">${p.sizes}</span>
+          <span class="card-price-badge">${p.price}</span>
+          <div class="card-hover">🔍 ${t.viewD}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">${pd.n}</div>
+          <div class="card-desc-preview">${pd.d}</div>
+          <div class="card-footer">
+            <span class="card-price">${p.price}</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </div>`;
+      c.addEventListener('click',()=>openModal(p.id));
+      c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(p.id);}});
+      grid.appendChild(c);
+    });
+  },110);
+}
+
+function renderChips(){
+  const t=T[LANG],el=document.getElementById('chipsEl');
+  el.innerHTML='';
+  CAT_KEYS.forEach(k=>{
+    const b=document.createElement('button');
+    b.className='chip'+(CAT===k?' on':'');
+    b.textContent=t.cats[k]||k;
+    b.setAttribute('aria-pressed',String(CAT===k));
+    b.onclick=()=>{CAT=k;renderChips();renderCatalog();};
+    el.appendChild(b);
+  });
+}
+
+function doFilter(){Q=document.getElementById('searchIn').value;renderCatalog();}
+
+/* ── MODAL ── */
+function openModal(id){
+  const t=T[LANG],pd=t.pd[id],p=P.find(x=>x.id===id);
+  if(!pd||!p)return;
+  document.getElementById('mImg').src=p.img;
+  document.getElementById('mImg').alt=pd.n;
+  document.getElementById('mTitle').textContent=pd.n;
+  document.getElementById('mPill').textContent=p.sizes;
+  document.getElementById('mDesc').textContent=pd.d;
+  document.getElementById('mPrices').innerHTML=pd.pr;
+  document.getElementById('mCustom').innerHTML=pd.cu;
+  document.getElementById('mUse').innerHTML=pd.us;
+  document.getElementById('mHow').innerHTML=pd.ho;
+  document.getElementById('mL1').textContent=t.mL1;
+  document.getElementById('mL2').textContent=t.mL2;
+  document.getElementById('mL3').textContent=t.mL3;
+  document.getElementById('mL4').textContent=t.mL4;
+  document.getElementById('mWaLabel').textContent=t.mWaLabel;
+  document.getElementById('mBack').textContent=t.mBack;
+  document.getElementById('mWa').href='https://wa.me/573108095915?text='+encodeURIComponent(pd.wa);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('mWa').focus(),300);
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ── STEPS ── */
+function renderSteps(){
+  document.getElementById('stepsEl').innerHTML=T[LANG].steps.map(s=>`
+    <div class="step"><div class="step-num">${s.n}</div><strong>${s.t}</strong><p>${s.p}</p></div>`).join('');
+}
+
+/* ── APPLY LANGUAGE ── */
+function applyLang(lang){
+  const t=T[lang]||T.es;LANG=lang;
+  document.documentElement.lang=t.l;document.title=t.doc;
+  document.getElementById('lEs').classList.toggle('on',lang==='es');
+  document.getElementById('lEn').classList.toggle('on',lang==='en');
+  // text fields
+  const map={brandTag:t.brandTag,nCat:t.nCat,nHow:t.nHow,nContact:t.nContact,
+    mnCat:t.nCat,mnHow:t.nHow,mnContact:t.nContact,
+    heroTag:t.heroTag,heroWaLbl:t.heroWaLbl,heroCatBtn:t.heroCatBtn,
+    f1t:t.f1t,f1d:t.f1d,f2t:t.f2t,f2d:t.f2d,f3t:t.f3t,f3d:t.f3d,f4t:t.f4t,f4d:t.f4d,
+    catTitle:t.catTitle,howTitle:t.howTitle,howWaLbl:t.howWaLbl,priceNote:t.priceNote,
+    contactTitle:t.contactTitle,contactNote:t.contactNote,contactWaBtn:t.contactWaBtn,
+    footMade:t.footMade,footCop:t.footCop,fabTip:t.fabTip,
+    ovTitle:t.ovTitle,ovSub:t.ovSub,ovText:t.ovText};
+  Object.entries(map).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v;});
+  document.getElementById('heroTitle').innerHTML=t.heroTitle;
+  document.getElementById('heroEye').textContent=t.heroEye;
+  document.getElementById('heroQuote').textContent=t.heroQuote;
+  document.getElementById('contactText').innerHTML=t.contactText;
+  const si=document.getElementById('searchIn');if(si)si.placeholder=t.searchPh;
+  renderChips();renderCatalog();renderSteps();
+}
+
+function setLang(lang,fromOv){
+  localStorage.setItem('mr_lang',lang);applyLang(lang);
+  if(fromOv){
+    const ov=document.getElementById('langOverlay');
+    ov.classList.add('gone');
+    setTimeout(()=>ov.style.display='none',400);
   }
+  showToast(lang==='es'?'🇨🇴 Español activado':'🇺🇸 English selected');
+}
 
-  // Initialize language (overlay first if no stored language)
-  (function initLang(){
-    const stored = localStorage.getItem("mr_lang");
-    if(stored){
-      document.getElementById("langOverlay").classList.add("hidden");
-      document.getElementById("langSelect").value = stored;
-      applyLanguage(stored);
-    } else {
-      // default texts in ES already; overlay shows
-      document.getElementById("langSelect").value = "es";
-      applyLanguage("es");
-    }
-  })();
+/* ── MOBILE MENU ── */
+let menuOpen=false;
+function toggleMenu(){
+  menuOpen=!menuOpen;
+  document.getElementById('mobileNav').classList.toggle('open',menuOpen);
+  document.getElementById('burgerBtn').setAttribute('aria-expanded',String(menuOpen));
+  document.body.style.overflow=menuOpen?'hidden':'';
+}
+function closeMenu(){
+  menuOpen=false;
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('burgerBtn').setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
 
-  function openDetail(key, silent){
-    const item = DETAILS[key];
-    if(!item) return;
+/* ── FAB scroll ── */
+window.addEventListener('scroll',()=>{
+  const fab=document.getElementById('fab');
+  const show=window.scrollY>220;
+  fab.style.opacity=show?'1':'0';
+  fab.style.pointerEvents=show?'all':'none';
+},{passive:true});
 
-    window.__OPEN_DETAIL_KEY = key;
+/* ── TOAST ── */
+let toastT;
+function showToast(m){
+  const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2400);
+}
 
-    const d = item[CURRENT_LANG] || item.es;
+/* ── YEAR ── */
+document.getElementById('yr').textContent=new Date().getFullYear();
 
-    // Hide grid, show detail
-    document.getElementById("catalogGrid").style.display = "none";
-    const detail = document.getElementById("detailView");
-    detail.classList.add("show");
-
-    // Load content
-    const img = document.getElementById("detailImg");
-    img.src = d.img;
-    img.alt = d.title;
-
-    document.getElementById("detailTitle").textContent = d.title;
-    document.getElementById("detailDesc").textContent = d.desc;
-    document.getElementById("detailPill").textContent = d.pill;
-
-    document.getElementById("detailPrices").innerHTML = d.prices;
-    document.getElementById("detailCustom").innerHTML = d.custom;
-    document.getElementById("detailUse").innerHTML = d.use;
-    document.getElementById("detailHow").innerHTML = d.how;
-
-    const wa = document.getElementById("detailWhats");
-    wa.href = "https://wa.me/573108095915?text=" + encodeURIComponent(d.waText);
-
-    if(!silent){
-      location.hash = "#catalogo";
-      window.scrollTo({ top: document.getElementById("catalogo").offsetTop - 10, behavior: "smooth" });
-    }
+/* ── INIT ── */
+(function(){
+  const s=localStorage.getItem('mr_lang');
+  if(s){
+    const ov=document.getElementById('langOverlay');
+    ov.classList.add('gone');ov.style.display='none';
+    applyLang(s);
+  } else {
+    applyLang('es');
   }
-
-  function closeDetail(){
-    window.__OPEN_DETAIL_KEY = null;
-    document.getElementById("detailView").classList.remove("show");
-    document.getElementById("catalogGrid").style.display = "grid";
-    location.hash = "#catalogo";
-    window.scrollTo({ top: document.getElementById("catalogo").offsetTop - 10, behavior: "smooth" });
-  }
+})();
 </script>
-
 </body>
 </html>
-
