@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Mimita Remember | Velas Artesanales</title>
-<meta name="description" content="Velas artesanales hechas con amor. Personalizables en color y aroma. Colombia. Pide por WhatsApp."/>
+<meta name="description" content="Velas artesanales hechas con amor. Personalizables en color y aroma. Colombia. Pide por WhatsApp o correo."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
@@ -211,6 +211,13 @@ header{position:sticky;top:0;z-index:90;height:var(--hh);background:rgba(13,11,8
 .contact-info{flex:1}
 .contact-info p{font-size:15px;color:var(--muted);line-height:1.72}
 .contact-info strong{color:var(--text)}
+.contact-info a{color:var(--ap);text-decoration:none;border-bottom:1px solid rgba(245,201,138,.28);transition:color .15s,border-color .15s}
+.contact-info a:hover{color:var(--al);border-color:var(--al)}
+.contact-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.contact-actions .btn{min-width:112px}
+@media(max-width:560px){.contact-actions{width:100%}.contact-actions .btn{flex:1}}
+.foot a{color:var(--ap);transition:color .15s}
+.foot a:hover{color:var(--al)}
 
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--line);padding:22px 20px}
@@ -321,7 +328,7 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
 <div id="prog"></div>
 
 <!-- ═══ LANG OVERLAY ═══ -->
-<div id="langOv" class="lang-ov" role="dialog" aria-modal="true" aria-label="Seleccion de idioma">
+<div id="langOv" class="lang-ov" role="dialog" aria-modal="true" aria-label="Selección de idioma">
   <div class="lang-card">
     <div class="lang-top">
       <div class="logo-badge" style="width:46px;height:46px;border-radius:13px;font-size:14px">MR</div>
@@ -331,9 +338,9 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
       </div>
     </div>
     <div class="lang-body">
-      <p id="ovP">Selecciona el idioma para explorar el catalogo de velas artesanales.</p>
+      <p id="ovP">Selecciona el idioma para explorar el catálogo de velas artesanales.</p>
       <div class="lang-btns">
-        <button class="btn btn-p btn-lg" onclick="setLang('es',true)">Espanol</button>
+        <button class="btn btn-p btn-lg" onclick="setLang('es',true)">Español</button>
         <button class="btn btn-lg" onclick="setLang('en',true)">English</button>
       </div>
     </div>
@@ -345,7 +352,7 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
   <div class="modal">
     <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">&#x2715;</button>
     <div class="modal-split">
-      <img id="mImg" class="modal-img" src="" alt="" loading="lazy">
+      <img id="mImg" class="modal-img" src="" alt="" loading="lazy" decoding="async" onerror="handleImgError(this)">
       <div class="modal-info">
         <h2 id="mTitle" class="modal-title"></h2>
         <span id="mPill" class="modal-pill"></span>
@@ -355,9 +362,9 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
       <p id="mDesc" class="modal-desc"></p>
       <div class="info-grid">
         <div class="info-box"><div id="mL1" class="info-lbl">Precios</div><div id="mPr" class="info-val"></div></div>
-        <div class="info-box"><div id="mL2" class="info-lbl">Personalizacion</div><div id="mCu" class="info-val"></div></div>
-        <div class="info-box"><div id="mL3" class="info-lbl">Como usar</div><div id="mUs" class="info-val"></div></div>
-        <div class="info-box"><div id="mL4" class="info-lbl">Como pedir</div><div id="mHo" class="info-val"></div></div>
+        <div class="info-box"><div id="mL2" class="info-lbl">Personalización</div><div id="mCu" class="info-val"></div></div>
+        <div class="info-box"><div id="mL3" class="info-lbl">Cómo usar</div><div id="mUs" class="info-val"></div></div>
+        <div class="info-box"><div id="mL4" class="info-lbl">Cómo pedir</div><div id="mHo" class="info-val"></div></div>
       </div>
       <div class="modal-acts">
         <a id="mWa" class="btn btn-p" href="#" target="_blank" rel="noopener noreferrer">
@@ -386,12 +393,12 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
     onerror="this.style.display='none';document.getElementById('mimEmoji').style.display='grid'"
   >
   <div class="mim-emoji" id="mimEmoji" style="display:none" onclick="mimClick()" title="Haz click!">
-    🕯️
+    &#x1F56F;&#xFE0F;
   </div>
 </div>
 
 <!-- ═══ FLOATING WA ═══ -->
-<a class="fab" id="fab" href="https://wa.me/573108095915" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+<a class="fab" id="fab" href="https://wa.me/573195565861?text=Hola%20Mimita%2C%20quiero%20preguntar%20por%20__________.%20Gracias%20%F0%9F%95%AF%EF%B8%8F%20%E2%9D%A4%EF%B8%8F" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
   <span class="fab-tip" id="fabTip">Pedir por WhatsApp</span>
   <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.77.462 3.43 1.268 4.878L2 22l5.282-1.236A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.17c-1.624 0-3.14-.436-4.44-1.2l-.317-.19-3.137.733.757-3.04-.21-.33A8.147 8.147 0 013.83 12c0-4.508 3.666-8.17 8.17-8.17s8.17 3.662 8.17 8.17-3.666 8.17-8.17 8.17z"/></svg>
 </a>
@@ -405,12 +412,12 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
       <div class="logo-badge">MR</div>
       <div>
         <span>Mimita Remember</span>
-        <span class="brand-sub" id="bTag">Velas artesanales con intencion</span>
+        <span class="brand-sub" id="bTag">Velas artesanales con intención</span>
       </div>
     </a>
     <nav class="nav-links" aria-label="Principal">
-      <a href="#catalogo" id="nC">Catalogo</a>
-      <a href="#como-pedir" id="nH">Como pedir</a>
+      <a href="#catalogo" id="nC">Catálogo</a>
+      <a href="#como-pedir" id="nH">Cómo pedir</a>
       <a href="#contacto" id="nK">Contacto</a>
     </nav>
     <div class="nav-right">
@@ -426,8 +433,8 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
 </header>
 
 <nav class="mob-nav" id="mobNav" aria-label="Menu movil">
-  <a href="#catalogo" onclick="closeMenu()" id="mnC">Catalogo</a>
-  <a href="#como-pedir" onclick="closeMenu()" id="mnH">Como pedir</a>
+  <a href="#catalogo" onclick="closeMenu()" id="mnC">Catálogo</a>
+  <a href="#como-pedir" onclick="closeMenu()" id="mnH">Cómo pedir</a>
   <a href="#contacto" onclick="closeMenu()" id="mnK">Contacto</a>
 </nav>
 
@@ -443,26 +450,26 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
     <blockquote class="quote-bar" id="hQuote">Una velita hecha con amor, pensada para ti.</blockquote>
     <div class="hero-cta">
       <a class="btn btn-p btn-lg" id="hWaBtn"
-         href="https://wa.me/573108095915?text=Hola%20Mimita%20Remember%2C%20quiero%20ver%20el%20catalogo!"
+         href="https://wa.me/573195565861?text=Hola%20Mimita%2C%20quiero%20preguntar%20por%20__________.%20Gracias%20%F0%9F%95%AF%EF%B8%8F%20%E2%9D%A4%EF%B8%8F"
          target="_blank" rel="noopener noreferrer">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.77.462 3.43 1.268 4.878L2 22l5.282-1.236A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.17c-1.624 0-3.14-.436-4.44-1.2l-.317-.19-3.137.733.757-3.04-.21-.33A8.147 8.147 0 013.83 12c0-4.508 3.666-8.17 8.17-8.17s8.17 3.662 8.17 8.17-3.666 8.17-8.17 8.17z"/></svg>
         <span id="hWaLbl">Pedir por WhatsApp</span>
       </a>
-      <a class="btn btn-lg" href="#catalogo" id="hCatBtn">Ver catalogo</a>
+      <a class="btn btn-lg" href="#catalogo" id="hCatBtn">Ver catálogo</a>
     </div>
   </div>
   <div class="feats au2">
     <div class="feat"><div class="feat-ic">&#x1F56F;&#xFE0F;</div><div><strong id="f1t">Hechas con amor</strong><span id="f1d">100% artesanales, parafina de calidad</span></div></div>
-    <div class="feat"><div class="feat-ic">&#x1F3A8;</div><div><strong id="f2t">Personalizables</strong><span id="f2d">Elige color, aroma y tamano</span></div></div>
+    <div class="feat"><div class="feat-ic">&#x1F3A8;</div><div><strong id="f2t">Personalizables</strong><span id="f2d">Elige color, aroma y tamaño</span></div></div>
     <div class="feat"><div class="feat-ic">&#x1F4B0;</div><div><strong id="f3t">Precios claros</strong><span id="f3d">Todos en pesos colombianos (COP)</span></div></div>
-    <div class="feat"><div class="feat-ic">&#x1F4E6;</div><div><strong id="f4t">Envio Colombia</strong><span id="f4d">Coordinamos la entrega contigo</span></div></div>
+    <div class="feat"><div class="feat-ic">&#x1F4E6;</div><div><strong id="f4t">Envío Colombia</strong><span id="f4d">Coordinamos la entrega contigo</span></div></div>
   </div>
 </section>
 
 <!-- CATALOG -->
 <section class="section" id="catalogo">
   <div class="sec-head">
-    <h2 class="sec-title" id="catTitle">Catalogo</h2>
+    <h2 class="sec-title" id="catTitle">Catálogo</h2>
     <span class="cnt-pill" id="cntPill">19 productos</span>
   </div>
   <div class="filter-bar">
@@ -478,13 +485,13 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
 
 <!-- HOW TO ORDER -->
 <section class="section" id="como-pedir">
-  <h2 class="sec-title" style="margin-bottom:24px" id="howTitle">Como pedir</h2>
+  <h2 class="sec-title" style="margin-bottom:24px" id="howTitle">Cómo pedir</h2>
   <div class="steps" id="stepsEl"></div>
-  <a class="btn btn-p btn-lg" id="howWaBtn" href="https://wa.me/573108095915" target="_blank" rel="noopener noreferrer">
+  <a class="btn btn-p btn-lg" id="howWaBtn" href="https://wa.me/573195565861?text=Hola%20Mimita%2C%20quiero%20preguntar%20por%20__________.%20Gracias%20%F0%9F%95%AF%EF%B8%8F%20%E2%9D%A4%EF%B8%8F" target="_blank" rel="noopener noreferrer">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.77.462 3.43 1.268 4.878L2 22l5.282-1.236A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.17c-1.624 0-3.14-.436-4.44-1.2l-.317-.19-3.137.733.757-3.04-.21-.33A8.147 8.147 0 013.83 12c0-4.508 3.666-8.17 8.17-8.17s8.17 3.662 8.17 8.17-3.666 8.17-8.17 8.17z"/></svg>
     <span id="howWaLbl">Escribir por WhatsApp</span>
   </a>
-  <p id="pNote" style="margin-top:14px;font-size:13px;color:var(--muted)">Todos los precios estan en pesos colombianos (COP).</p>
+  <p id="pNote" style="margin-top:14px;font-size:13px;color:var(--muted)">Todos los precios están en pesos colombianos (COP).</p>
 </section>
 
 <!-- CONTACT -->
@@ -492,10 +499,13 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
   <h2 class="sec-title" style="margin-bottom:20px" id="coTitle">Contacto</h2>
   <div class="contact-box">
     <div class="contact-info">
-      <p id="coText">WhatsApp: <strong>+57 310 809 5915</strong><br>Lun-Sab 9am-7pm</p>
+      <p id="coText">WhatsApp: <strong>+57 319 5565861</strong><br>Correo: <a href="mailto:mimitaremember2026@gmail.com"><strong>mimitaremember2026@gmail.com</strong></a><br>Lun-Sáb 9am-7pm</p>
       <p id="coNote" style="margin-top:6px;font-size:12px">Precios en COP.</p>
     </div>
-    <a class="btn btn-p" href="https://wa.me/573108095915" target="_blank" rel="noopener noreferrer" id="coWaBtn">WhatsApp</a>
+    <div class="contact-actions">
+      <a class="btn btn-p" href="https://wa.me/573195565861?text=Hola%20Mimita%2C%20quiero%20preguntar%20por%20__________.%20Gracias%20%F0%9F%95%AF%EF%B8%8F%20%E2%9D%A4%EF%B8%8F" target="_blank" rel="noopener noreferrer" id="coWaBtn">WhatsApp</a>
+      <a class="btn" href="mailto:mimitaremember2026@gmail.com" id="coEmailBtn">Correo</a>
+    </div>
   </div>
 </section>
 </main>
@@ -504,6 +514,7 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
   <div class="foot">
     <span class="foot-brand">Mimita Remember</span>
     <span id="fMade">Hecho con amor</span>
+    <span><a id="fEmail" href="mailto:mimitaremember2026@gmail.com">mimitaremember2026@gmail.com</a></span>
     <span>&#xA9; <span id="yr"></span> &middot; <span id="fCop">Precios en COP</span></span>
   </div>
 </footer>
@@ -517,7 +528,7 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
 var PRODS = [
   {id:'rosas',     img:'img/rosas.png',           price:'COP 12.000',       sizes:'10 cm',           cat:'flores'},
   {id:'decor',     img:'img/decorativas.png',      price:'COP 12.000',       sizes:'8 cm',            cat:'deco'},
-  {id:'corazones', img:'img/corazones.png',        price:'COP 15.000/7.000', sizes:'10 cm & 5 cm',    cat:'amor'},
+  {id:'corazónes', img:'img/corazónes.png',        price:'COP 15.000/7.000', sizes:'10 cm & 5 cm',    cat:'amor'},
   {id:'estrellas', img:'img/estrellitas.png',      price:'COP 15.000',       sizes:'12 cm',           cat:'deco'},
   {id:'bolitas',   img:'img/bolitas.png',          price:'COP 10.000',       sizes:'8 cm',            cat:'deco'},
   {id:'velones',   img:'img/velones.png',          price:'COP 25.000-20.000',sizes:'22/15 cm',        cat:'velones'},
@@ -536,8 +547,8 @@ var PRODS = [
   {id:'espiral',   img:'img/espiral.PNG',          price:'COP 10.000',       sizes:'5 cm',            cat:'intencion'},
 
   /* Nuevas colecciones: se muestran como una sola tarjeta por colección */
-  {id:'coleccion_vidrio_redondo', img:'img/Colección_vidrio_redondo.png', price:'Consultar', sizes:'Recipiente', cat:'vidrio'},
-  {id:'coleccion_espiral',        img:'img/Colección_espiral.png',        price:'Consultar', sizes:'2 / 3 / 5 cm', cat:'espiralcol'}
+  {id:'coleccion_vidrio_redondo', img:'img/Colección_vidrio_redondo.png', price:'COP 15.000', sizes:'Recipiente', cat:'vidrio'},
+  {id:'coleccion_espiral',        img:'img/Colección_espiral.png',        price:'COP 20.000', sizes:'2 / 3 / 5 cm', cat:'espiralcol'}
 ];
 
 /* ══════════════════════════════════════════════
@@ -546,61 +557,61 @@ var PRODS = [
 var T = {
   es: {
     l:'es', doc:'Mimita Remember | Velas Artesanales',
-    bTag:'Velas artesanales con intencion',
-    nC:'Catalogo', nH:'Como pedir', nK:'Contacto',
+    bTag:'Velas artesanales con intención',
+    nC:'Catálogo', nH:'Cómo pedir', nK:'Contacto',
     hEye:'Velas artesanales colombianas',
     hTitle:'Enciende una <em>velita</em><br>e ilumina tu vida &#x2728;',
     hTag:'Velas hechas con amor y parafina de calidad. Personalizables en color y aroma.',
     hQuote:'Una velita hecha con amor, pensada para ti.',
-    hWaLbl:'Pedir por WhatsApp', hCatBtn:'Ver catalogo',
+    hWaLbl:'Pedir por WhatsApp', hCatBtn:'Ver catálogo',
     f1t:'Hechas con amor',   f1d:'100% artesanales, parafina de calidad',
-    f2t:'Personalizables',   f2d:'Elige color, aroma y tamano',
+    f2t:'Personalizables',   f2d:'Elige color, aroma y tamaño',
     f3t:'Precios claros',    f3d:'Todos en pesos colombianos (COP)',
-    f4t:'Envio Colombia',    f4d:'Coordinamos la entrega contigo',
-    catTitle:'Catalogo', sPh:'Buscar...', vD:'Ver detalles',
-    noR:'No encontramos esa vela', noRs:'Intenta con otra busqueda o escribenos al WhatsApp.',
-    cats:{all:'Todas',flores:'Flores',amor:'Amor',deco:'Decorativas',velones:'Velones',intencion:'Intencion',sets:'Sets',vidrio:'Vidrio redondo',espiralcol:'Espiral'},
-    howTitle:'Como pedir', howWaLbl:'Escribir por WhatsApp',
-    pNote:'Todos los precios estan en pesos colombianos (COP).',
+    f4t:'Envío Colombia',    f4d:'Coordinamos la entrega contigo',
+    catTitle:'Catálogo', sPh:'Buscar...', vD:'Ver detalles',
+    noR:'No encontramos esa vela', noRs:'Intenta con otra búsqueda o escríbenos al WhatsApp.',
+    cats:{all:'Todas',flores:'Flores',amor:'Amor',deco:'Decorativas',velones:'Velones',intencion:'Intención',sets:'Sets',vidrio:'Vidrio redondo',espiralcol:'Espiral'},
+    howTitle:'Cómo pedir', howWaLbl:'Escribir por WhatsApp',
+    pNote:'Todos los precios están en pesos colombianos (COP).',
     coTitle:'Contacto',
-    coText:'WhatsApp: <strong>+57 310 809 5915</strong><br>Lun-Sab 9am-7pm',
-    coNote:'Precios en COP.', coWaBtn:'WhatsApp',
+    coText:'WhatsApp: <strong>+57 319 5565861</strong><br>Correo: <a href="mailto:mimitaremember2026@gmail.com"><strong>mimitaremember2026@gmail.com</strong></a><br>Lun-Sáb 9am-7pm',
+    coNote:'Precios en COP.', coWaBtn:'WhatsApp', coEmailBtn:'Correo',
     fMade:'Hecho con amor', fCop:'Precios en COP',
     fabTip:'Pedir por WhatsApp',
-    mL1:'Precios', mL2:'Personalizacion', mL3:'Como usar', mL4:'Como pedir',
+    mL1:'Precios', mL2:'Personalización', mL3:'Cómo usar', mL4:'Cómo pedir',
     mWaLbl:'Pedir por WhatsApp', mBack:'Volver',
     ovT:'Elige tu idioma', ovS:'Choose your language',
-    ovP:'Selecciona el idioma para explorar el catalogo de velas artesanales.',
+    ovP:'Selecciona el idioma para explorar el catálogo de velas artesanales.',
     cnt:function(n){return n+' producto'+(n===1?'':'s')},
     mimMsgs:['Hola! Soy Mimita','Te ayudo a elegir?','Todas son hermosas!','Pideme lo que quieras','Hecha con amor'],
     steps:[
-      {n:'1',t:'Elige tu vela',     p:'Explora el catalogo y encuentra la vela perfecta para ti o para regalar.'},
+      {n:'1',t:'Elige tu vela',     p:'Explora el catálogo y encuentra la vela perfecta para ti o para regalar.'},
       {n:'2',t:'Cuentanos tu pedido',p:'Indicanos cantidad, color, aroma deseado y fecha de entrega.'},
       {n:'3',t:'Confirmamos juntos', p:'Confirmamos disponibilidad, precio final y acordamos la entrega.'}
     ],
     pd:{
       rosas:    {n:'Rosas Maravillosas',   d:'Delicadas velas en forma de rosa, perfectas para regalar en fechas especiales.',pr:'Rosas 10 cm: <b>COP 12.000 c/u</b>',cu:'Color a tu eleccion<br>Aroma opcional<br>Ideales para detalles y regalos',us:'Superficie estable y plana<br>Lejos de corrientes de aire<br>No dejar sin supervision',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ROSAS MARAVILLOSAS - Cantidad: - Color: - Aroma: - Entrega:'},
       decor:    {n:'Velitas Decorativas',  d:'Mini velas para centros de mesa y eventos. Compactas y versatiles para cualquier ocasion.',pr:'Velita 8 cm: <b>COP 12.000 c/u</b>',cu:'Color a eleccion<br>Aroma opcional<br>Perfectas para eventos y mesas',us:'Superficie estable<br>Lejos de telas o papeles<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir VELITAS DECORATIVAS - Cantidad: - Color: - Aroma: - Entrega:'},
-      corazones:{n:'Corazones',            d:'Velas en forma de corazon para San Valentin, aniversarios y detalles de amor. Disponibles en dos tamanos.',pr:'Corazon 10 cm: <b>COP 15.000</b><br>Corazon 5 cm: <b>COP 7.000</b>',cu:'Colores uno o varios tonos<br>Aroma opcional<br>Ideal para combos y recordatorios',us:'Superficie estable y plana<br>Lejos de corrientes de aire<br>No dejar sin supervision',ho:'1) Tamano (10 cm o 5 cm)<br>2) Cantidad<br>3) Color(es) y aroma<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir CORAZONES - Tamano: (10cm/5cm) - Cantidad: - Color: - Aroma: - Entrega:'},
+      corazónes:{n:'Corazónes',            d:'Velas en forma de corazón para San Valentín, aniversarios y detalles de amor. Disponibles en dos tamaños.',pr:'Corazón 10 cm: <b>COP 15.000</b><br>Corazón 5 cm: <b>COP 7.000</b>',cu:'Colores uno o varios tonos<br>Aroma opcional<br>Ideal para combos y recordatorios',us:'Superficie estable y plana<br>Lejos de corrientes de aire<br>No dejar sin supervision',ho:'1) Tamaño (10 cm o 5 cm)<br>2) Cantidad<br>3) Color(es) y aroma<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir CORAZONES - Tamaño: (10cm/5cm) - Cantidad: - Color: - Aroma: - Entrega:'},
       estrellas:{n:'Estrellitas',          d:'Velas con forma de estrella para decorar o regalar en cumpleanos. Forma unica e inolvidable.',pr:'Estrellita 12 cm: <b>COP 15.000 c/u</b>',cu:'Color a eleccion<br>Aroma opcional<br>Ideales para celebraciones',us:'Superficie estable<br>Lejos de corrientes de aire<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ESTRELLITAS - Cantidad: - Color: - Aroma: - Entrega:'},
       bolitas:  {n:'Bolitas',              d:'Velas esfericas que crean ambientes acogedores. Hermosas solas o agrupadas como centro de mesa.',pr:'Bolita 8 cm: <b>COP 10.000 c/u</b>',cu:'Color a eleccion<br>Aroma opcional<br>Lindas en grupos de 3 o mas',us:'Sobre plato o soporte adecuado<br>Lejos de telas<br>No dejar sin supervision',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir BOLITAS - Cantidad: - Color: - Aroma: - Entrega:'},
-      velones:  {n:'Velones',              d:'Velones clasicos y multicolores para decoracion, altar, eventos y regalos especiales.',pr:'Velon 22 cm: <b>COP 25.000</b><br>Velon 15 cm: <b>COP 20.000</b><br>Multicolor 15 cm: <b>COP 20.000</b>',cu:'Colores incluye multicolor<br>Aroma opcional<br>Combos por intencion disponibles',us:'1ra encendida: deja formar piscina arriba<br>Recorta la mecha si queda muy alta<br>No dejar sin supervision',ho:'1) Tamano (22 cm o 15 cm)<br>2) Color/multicolor<br>3) Cantidad<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir VELONES - Tamano: (22cm/15cm/multicolor) - Cantidad: - Color: - Aroma: - Entrega:'},
-      intencion:{n:'Velitas Intencionadas',d:'Velas con proposito: amor, prosperidad, calma o energia. Con dedicatoria personalizada.',pr:'Velita intencionada: <b>COP 30.000</b>',cu:'Color segun intencion<br>Aroma y mensaje personalizados<br>Largas y arbolitos',us:'Enciendela con intencion y enfoque<br>Ambiente tranquilo<br>No dejar sin supervision',ho:'1) Intencion deseada<br>2) Modelo (larga/arbolito)<br>3) Mensaje personalizado<br>4) Entrega',wa:'Hola Mimita Remember, quiero pedir VELITAS INTENCIONADAS - Intencion: - Modelo: - Mensaje: - Entrega:'},
+      velones:  {n:'Velones',              d:'Velones clásicos y multicolores para decoración, altar, eventos y regalos especiales.',pr:'Velon 22 cm: <b>COP 25.000</b><br>Velon 15 cm: <b>COP 20.000</b><br>Multicolor 15 cm: <b>COP 20.000</b>',cu:'Colores incluye multicolor<br>Aroma opcional<br>Combos por intencion disponibles',us:'1ra encendida: deja formar piscina arriba<br>Recorta la mecha si queda muy alta<br>No dejar sin supervision',ho:'1) Tamaño (22 cm o 15 cm)<br>2) Color/multicolor<br>3) Cantidad<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir VELONES - Tamaño: (22cm/15cm/multicolor) - Cantidad: - Color: - Aroma: - Entrega:'},
+      intencion:{n:'Velitas Intencionadas',d:'Velas con propósito: amor, prosperidad, calma o energía. Con dedicatoria personalizada.',pr:'Velita intencionada: <b>COP 30.000</b>',cu:'Color según intencion<br>Aroma y mensaje personalizados<br>Largas y arbolitos',us:'Enciéndela con intencion y enfoque<br>Ambiente tranquilo<br>No dejar sin supervision',ho:'1) Intención deseada<br>2) Modelo (larga/arbolito)<br>3) Mensaje personalizado<br>4) Entrega',wa:'Hola Mimita Remember, quiero pedir VELITAS INTENCIONADAS - Intención: - Modelo: - Mensaje: - Entrega:'},
       tresrosas:{n:'Trio de Rosas',        d:'Set de tres elegantes velas rosa de 5 cm. Presentacion premium ideal para regalar.',pr:'Trio de rosas (3 x 5 cm): <b>COP 15.000</b>',cu:'Colores del trio a eleccion<br>Aroma opcional<br>Ideal como regalo completo',us:'Superficie estable<br>Lejos de corrientes de aire<br>No dejar sin supervision',ho:'1) Colores del trio<br>2) Aroma (opcional)<br>3) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir TRIO DE ROSAS - Colores: - Aroma: - Entrega:'},
       rosaimp:  {n:'Rosa Imperial',        d:'Vela bolita de 5 cm con rosas en relieve. Elegante y sofisticada para personas especiales.',pr:'Rosa Imperial 5 cm: <b>COP 15.000 c/u</b>',cu:'Color a eleccion<br>Aroma opcional<br>Ideal para regalos premium',us:'Superficie plana y estable<br>Lejos de corrientes de aire<br>Siempre vigilada',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ROSA IMPERIAL - Cantidad: - Color: - Aroma: - Entrega:'},
       luzfloral:{n:'Luz Floral Premium',   d:'Grandes velas con flores en relieve de 10 cm. Lujo artesanal para centros de mesa.',pr:'Luz Floral 10 cm: <b>COP 30.000 c/u</b>',cu:'Color a eleccion<br>Aroma opcional<br>Maximo impacto decorativo',us:'Superficie amplia y estable<br>Lejos de telas y papeles<br>Siempre vigilada',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir LUZ FLORAL PREMIUM - Cantidad: - Color: - Aroma: - Entrega:'},
-      aura:     {n:'Aura Dorada',          d:'Majestuosas velas de 20-30 cm en tonos calidos. Presencia imponente para decoraciones importantes.',pr:'Aura Dorada (20-30 cm): <b>COP 30.000</b>',cu:'Tonos calidos disponibles<br>Aroma opcional<br>Ideal para bodas y eventos',us:'Soporte firme y amplio<br>Primera encendida larga para la piscina<br>No dejar sin supervision',ho:'1) Altura (20 o 30 cm)<br>2) Color<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir AURA DORADA - Altura: (20/30cm) - Color: - Aroma: - Entrega:'},
+      aura:     {n:'Aura Dorada',          d:'Majestuosas velas de 20-30 cm en tonos calidos. Presencia imponente para decoraciónes importantes.',pr:'Aura Dorada (20-30 cm): <b>COP 30.000</b>',cu:'Tonos calidos disponibles<br>Aroma opcional<br>Ideal para bodas y eventos',us:'Soporte firme y amplio<br>Primera encendida larga para la piscina<br>No dejar sin supervision',ho:'1) Altura (20 o 30 cm)<br>2) Color<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir AURA DORADA - Altura: (20/30cm) - Color: - Aroma: - Entrega:'},
       cristal:  {n:'Cristal de Luz',       d:'Velas de 8 cm con acabado translucido que proyectan luz calida y envolvente.',pr:'Cristal de Luz 8 cm: <b>COP 20.000 c/u</b>',cu:'Tonos cristal disponibles<br>Aroma opcional<br>Perfectas para ambiente spa',us:'Superficie plana y limpia<br>Lejos de telas<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Tono preferido<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir CRISTAL DE LUZ - Cantidad: - Tono: - Aroma: - Entrega:'},
       trilogia: {n:'Trilogia de Luz',      d:'Set de 3 velas coordinadas para decorar juntas. Formas y colores complementarios.',pr:'Set de 3 velas: <b>COP 30.000</b> las tres',cu:'Colores y formas del set<br>Aroma opcional<br>Presentacion regalo incluida',us:'Acomodalas en grupo para mejor efecto<br>Superficies estables<br>Siempre vigiladas',ho:'1) Preferencia de colores<br>2) Aroma (opcional)<br>3) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir TRILOGIA DE LUZ - Colores: - Aroma: - Entrega:'},
-      ondas:    {n:'Ondas de Color',       d:'Velas de 12 cm con textura ondulada. Efecto visual unico en colores vibrantes y pasteles.',pr:'Ondas de Color 12 cm: <b>COP 20.000 c/u</b>',cu:'Amplia paleta de colores<br>Aroma opcional<br>Perfectas para decoracion moderna',us:'Superficie estable y plana<br>Lejos de corrientes de aire<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ONDAS DE COLOR - Cantidad: - Color: - Aroma: - Entrega:'},
-      carmesi:  {n:'Energia Carmesi',      d:'Velas rojas de 8 cm cargadas de energia y pasion. Ideales para rituales o decoracion audaz.',pr:'Energia Carmesi 8 cm: <b>COP 15.000 c/u</b>',cu:'Rojo y variantes disponibles<br>Aroma opcional<br>Ideal para rituales de energia',us:'Superficie estable<br>Ambiente tranquilo<br>Siempre vigilada',ho:'1) Cantidad<br>2) Aroma (opcional)<br>3) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ENERGIA CARMESI - Cantidad: - Aroma: - Entrega:'},
+      ondas:    {n:'Ondas de Color',       d:'Velas de 12 cm con textura ondulada. Efecto visual unico en colores vibrantes y pasteles.',pr:'Ondas de Color 12 cm: <b>COP 20.000 c/u</b>',cu:'Amplia paleta de colores<br>Aroma opcional<br>Perfectas para decoración moderna',us:'Superficie estable y plana<br>Lejos de corrientes de aire<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ONDAS DE COLOR - Cantidad: - Color: - Aroma: - Entrega:'},
+      carmesi:  {n:'Energia Carmesi',      d:'Velas rojas de 8 cm cargadas de energía y pasion. Ideales para rituales o decoración audaz.',pr:'Energia Carmesi 8 cm: <b>COP 15.000 c/u</b>',cu:'Rojo y variantes disponibles<br>Aroma opcional<br>Ideal para rituales de energía',us:'Superficie estable<br>Ambiente tranquilo<br>Siempre vigilada',ho:'1) Cantidad<br>2) Aroma (opcional)<br>3) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ENERGIA CARMESI - Cantidad: - Aroma: - Entrega:'},
       perlaoval:{n:'Perla Oval',           d:'Elegantes velas ovaladas de 8 cm con acabado suave tipo perla. Sofisticadas y atemporales.',pr:'Perla Oval 8 cm: <b>COP 12.000 c/u</b>',cu:'Tonos perla y nacar disponibles<br>Aroma opcional<br>Muy elegantes para regalos',us:'Superficie plana<br>Lejos de telas<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Tono preferido<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir PERLA OVAL - Cantidad: - Tono: - Aroma: - Entrega:'},
       aurora:   {n:'Llama Aurora',         d:'Velas de 8 cm con forma organica que evocan la llama. Cada pieza es unica.',pr:'Llama Aurora 8 cm: <b>COP 12.000 c/u</b>',cu:'Colores naturales disponibles<br>Aroma opcional<br>Cada pieza es unica',us:'Superficie estable<br>Lejos de corrientes de aire<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir LLAMA AURORA - Cantidad: - Color: - Aroma: - Entrega:'},
-      ojoalma:  {n:'Ojo del Alma',         d:'Velas de 5 cm con el simbolo del ojo espiritual. Proteccion e intuicion en una pieza artesanal.',pr:'Ojo del Alma 5 cm: <b>COP 12.000 c/u</b>',cu:'Colores espirituales disponibles<br>Aroma opcional<br>Cargadas de intencion',us:'Superficie plana<br>Ambiente tranquilo<br>Siempre vigilada',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir OJO DEL ALMA - Cantidad: - Color: - Aroma: - Entrega:'},
-      espiral:  {n:'Espiral de Luz',       d:'Velas de 5 cm en forma espiral que simbolizan crecimiento. Meditacion y decoracion en una pieza.',pr:'Espiral de Luz 5 cm: <b>COP 10.000 c/u</b>',cu:'Colores vibracionales disponibles<br>Aroma opcional<br>Perfectas para meditacion',us:'Superficie estable<br>Uso en meditacion o descanso<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ESPIRAL DE LUZ - Cantidad: - Color: - Aroma: - Entrega:'},
+      ojoalma:  {n:'Ojo del Alma',         d:'Velas de 5 cm con el símbolo del ojo espiritual. Protección e intuición en una pieza artesanal.',pr:'Ojo del Alma 5 cm: <b>COP 12.000 c/u</b>',cu:'Colores espirituales disponibles<br>Aroma opcional<br>Cargadas de intencion',us:'Superficie plana<br>Ambiente tranquilo<br>Siempre vigilada',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir OJO DEL ALMA - Cantidad: - Color: - Aroma: - Entrega:'},
+      espiral:  {n:'Espiral de Luz',       d:'Velas de 5 cm en forma espiral que simbolizan crecimiento. Meditacion y decoración en una pieza.',pr:'Espiral de Luz 5 cm: <b>COP 10.000 c/u</b>',cu:'Colores vibracionales disponibles<br>Aroma opcional<br>Perfectas para meditacion',us:'Superficie estable<br>Uso en meditacion o descanso<br>Siempre vigiladas',ho:'1) Cantidad<br>2) Color(es)<br>3) Aroma (opcional)<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir ESPIRAL DE LUZ - Cantidad: - Color: - Aroma: - Entrega:'},
 
-      coleccion_vidrio_redondo:{n:'Coleccion Vidrio Redondo',d:'Velas en recipiente de vidrio redondo, elegantes y listas para decorar, regalar o crear un ambiente calido y especial. Una sola coleccion con variantes azules, blancas y rojo vino para elegir segun el estilo del espacio.',pr:'Coleccion vidrio redondo: <b>Consultar precio</b><br>Variantes azules: <b>Aura Azul, Oceano, Luna Azul, Blue Glow</b><br>Variantes blancas: <b>Perla, Nube, Pure, Marfil</b><br>Variantes rojo vino: <b>Ruby, Vino, Borgona, Cherry Glow</b>',cu:'Presentacion en recipiente de vidrio<br>Color y aroma a eleccion<br>Ideal para regalo, decoracion y detalles premium',us:'Ubicala sobre una superficie estable y resistente al calor<br>No mover mientras esta encendida<br>Recorta la mecha si queda muy alta<br>No dejar sin supervision',ho:'1) Elige la variante: azul, blanca o rojo vino<br>2) Indica el nombre que prefieres<br>3) Cantidad y aroma deseado<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir la COLECCION VIDRIO REDONDO - Variante: - Nombre/color: - Cantidad: - Aroma: - Entrega:'},
-      coleccion_espiral:{n:'Coleccion Espiral',d:'Velas texturizadas con diseno espiral, modernas y artesanales. Su forma crea presencia visual y funciona muy bien en sets decorativos de diferentes tamanos.',pr:'Coleccion espiral amarilla: <b>Consultar precio</b><br><b>Ambar S / Sol Mini:</b> 2 cm<br><b>Ambar M / Sol Medium:</b> 3 cm<br><b>Ambar L / Sol Max:</b> 5 cm',cu:'Color amarillo ambar<br>Aroma opcional<br>Disponible por tamano o en set S + M + L<br>Perfecta para decoracion visible',us:'Ubicala sobre plato, bandeja decorativa o portavelas<br>Combina varios tamanos para un efecto mas elegante<br>Mantener lejos de telas, papeles y corrientes de aire<br>No dejar sin supervision',ho:'1) Elige tamano: Ambar S, Ambar M o Ambar L<br>2) Indica cantidad o set completo<br>3) Aroma deseado<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir la COLECCION ESPIRAL - Tamano: Ambar S/M/L o set - Cantidad: - Aroma: - Entrega:'}
+      coleccion_vidrio_redondo:{n:'Colección Vidrio Redondo',d:'Velas en recipiente de vidrio redondo, elegantes y listas para decorar, regalar o crear un ambiente calido y especial. Una sola coleccion con variantes azules, blancas y rojo vino para elegir según el estilo del espacio.',pr:'Colección vidrio redondo: <b>COP 15.000 c/u</b><br>Variantes azules: <b>Aura Azul, Oceano, Luna Azul, Blue Glow</b><br>Variantes blancas: <b>Perla, Nube, Pure, Marfil</b><br>Variantes rojo vino: <b>Ruby, Vino, Borgona, Cherry Glow</b>',cu:'Presentacion en recipiente de vidrio<br>Color y aroma a eleccion<br>Ideal para regalo, decoración y detalles premium',us:'Ubícala sobre una superficie estable y resistente al calor<br>No mover mientras esta encendida<br>Recorta la mecha si queda muy alta<br>No dejar sin supervision',ho:'1) Elige la variante: azul, blanca o rojo vino<br>2) Indica el nombre que prefieres<br>3) Cantidad y aroma deseado<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir la COLECCION VIDRIO REDONDO - Variante: - Nombre/color: - Cantidad: - Aroma: - Entrega:'},
+      coleccion_espiral:{n:'Colección Espiral',d:'Velas texturizadas con diseño espiral, modernas y artesanales. Su forma crea presencia visual y funciona muy bien en sets decorativos de diferentes tamaños.',pr:'Colección espiral amarilla: <b>COP 20.000 c/u</b><br><b>Ámbar S / Sol Mini:</b> 2 cm<br><b>Ámbar M / Sol Medium:</b> 3 cm<br><b>Ámbar L / Sol Max:</b> 5 cm',cu:'Color amarillo ambar<br>Aroma opcional<br>Disponible por tamaño o en set S + M + L<br>Perfecta para decoración visible',us:'Ubícala sobre plato, bandeja decorativa o portavelas<br>Combina varios tamaños para un efecto más elegante<br>Mantener lejos de telas, papeles y corrientes de aire<br>No dejar sin supervision',ho:'1) Elige tamaño: Ámbar S, Ámbar M o Ámbar L<br>2) Indica cantidad o set completo<br>3) Aroma deseado<br>4) Fecha de entrega',wa:'Hola Mimita Remember, quiero pedir la COLECCION ESPIRAL - Tamaño: Ámbar S/M/L o set - Cantidad: - Aroma: - Entrega:'}
     }
   },
   en: {
@@ -622,8 +633,8 @@ var T = {
     howTitle:'How to order', howWaLbl:'Message on WhatsApp',
     pNote:'All prices are in Colombian pesos (COP).',
     coTitle:'Contact',
-    coText:'WhatsApp: <strong>+57 310 809 5915</strong><br>Mon-Sat 9am-7pm',
-    coNote:'Prices in COP.', coWaBtn:'WhatsApp',
+    coText:'WhatsApp: <strong>+57 319 5565861</strong><br>Email: <a href="mailto:mimitaremember2026@gmail.com"><strong>mimitaremember2026@gmail.com</strong></a><br>Mon-Sat 9am-7pm',
+    coNote:'Prices in COP.', coWaBtn:'WhatsApp', coEmailBtn:'Email',
     fMade:'Made with love', fCop:'Prices in COP',
     fabTip:'Order on WhatsApp',
     mL1:'Prices', mL2:'Customization', mL3:'How to use', mL4:'How to order',
@@ -640,7 +651,7 @@ var T = {
     pd:{
       rosas:    {n:'Wonderful Roses',       d:'Delicate rose-shaped candles, perfect for gifting on special occasions.',pr:'Roses 10 cm: <b>COP 12.000 each</b>',cu:'Color of your choice<br>Optional scent<br>Perfect for gifts and favors',us:'Stable flat surface<br>Away from drafts<br>Never leave unattended',ho:'1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order WONDERFUL ROSES - Quantity: - Color: - Scent: - Delivery:'},
       decor:    {n:'Decorative Mini Candles',d:'Mini candles for centerpieces and events. Compact and versatile for any occasion.',pr:'Mini candle 8 cm: <b>COP 12.000 each</b>',cu:'Color of your choice<br>Optional scent<br>Great for events and table decor',us:'Stable surface<br>Away from fabrics or paper<br>Always supervised',ho:'1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order DECORATIVE MINI CANDLES - Quantity: - Color: - Scent: - Delivery:'},
-      corazones:{n:'Hearts',                d:'Heart-shaped candles for Valentine\'s Day, anniversaries and love gifts. Two sizes available.',pr:'Heart 10 cm: <b>COP 15.000</b><br>Heart 5 cm: <b>COP 7.000</b>',cu:'Colors single or multi-tone<br>Optional scent<br>Great for bundles and party favors',us:'Stable flat surface<br>Away from drafts<br>Never leave unattended',ho:'1) Size (10 cm or 5 cm)<br>2) Quantity<br>3) Color(s) and scent<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order HEARTS - Size: (10cm/5cm) - Quantity: - Color: - Scent: - Delivery:'},
+      corazónes:{n:'Hearts',                d:'Heart-shaped candles for Valentine\'s Day, anniversaries and love gifts. Two sizes available.',pr:'Heart 10 cm: <b>COP 15.000</b><br>Heart 5 cm: <b>COP 7.000</b>',cu:'Colors single or multi-tone<br>Optional scent<br>Great for bundles and party favors',us:'Stable flat surface<br>Away from drafts<br>Never leave unattended',ho:'1) Size (10 cm or 5 cm)<br>2) Quantity<br>3) Color(s) and scent<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order HEARTS - Size: (10cm/5cm) - Quantity: - Color: - Scent: - Delivery:'},
       estrellas:{n:'Little Stars',          d:'Star-shaped candles to decorate or gift for birthdays. A unique and memorable shape.',pr:'Little star 12 cm: <b>COP 15.000 each</b>',cu:'Color of your choice<br>Optional scent<br>Perfect for celebrations',us:'Stable surface<br>Away from drafts<br>Always supervised',ho:'1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order LITTLE STARS - Quantity: - Color: - Scent: - Delivery:'},
       bolitas:  {n:'Bubbles',               d:'Spherical candles that create cozy atmospheres. Beautiful alone or grouped as a centerpiece.',pr:'Bubble 8 cm: <b>COP 10.000 each</b>',cu:'Color of your choice<br>Optional scent<br>Beautiful in groups of 3+',us:'On a plate or proper holder<br>Away from fabrics<br>Never leave unattended',ho:'1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order BUBBLES - Quantity: - Color: - Scent: - Delivery:'},
       velones:  {n:'Pillar Candles',        d:'Classic and multicolor pillars for decor, altar, events and special gifts.',pr:'Pillar 22 cm: <b>COP 25.000</b><br>Pillar 15 cm: <b>COP 20.000</b><br>Multicolor 15 cm: <b>COP 20.000</b>',cu:'Colors including multicolor<br>Optional scent<br>Intention bundles available',us:'1st burn: let a top melt pool form<br>Trim wick if too tall<br>Never leave unattended',ho:'1) Size (22 cm or 15 cm)<br>2) Color/multicolor<br>3) Quantity<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order PILLAR CANDLES - Size: (22cm/15cm/multicolor) - Quantity: - Color: - Scent: - Delivery:'},
@@ -658,8 +669,8 @@ var T = {
       ojoalma:  {n:'Eye of the Soul',       d:'5 cm candles with the spiritual eye symbol. Protection and positive energy in one piece.',pr:'Eye of the Soul 5 cm: <b>COP 12.000 each</b>',cu:'Spiritual colors available<br>Optional scent<br>Charged with intention',us:'Flat surface<br>Peaceful environment<br>Always supervised',ho:'1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order EYE OF THE SOUL - Quantity: - Color: - Scent: - Delivery:'},
       espiral:  {n:'Spiral of Light',       d:'Small 5 cm spiral candles symbolizing growth and transformation. Meditation and decor in one.',pr:'Spiral of Light 5 cm: <b>COP 10.000 each</b>',cu:'Vibrational colors available<br>Optional scent<br>Perfect for meditation',us:'Stable surface<br>During meditation or rest<br>Always supervised',ho:'1) Quantity<br>2) Color(s)<br>3) Scent (optional)<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order SPIRAL OF LIGHT - Quantity: - Color: - Scent: - Delivery:'},
 
-      coleccion_vidrio_redondo:{n:'Round Glass Collection',d:'Round glass container candles, elegant and ready to decorate, gift or create a warm special atmosphere. One collection with blue, white and wine-red variants to choose according to the style of the space.',pr:'Round glass collection: <b>Ask for price</b><br>Blue variants: <b>Blue Aura, Ocean, Blue Moon, Blue Glow</b><br>White variants: <b>Pearl, Cloud, Pure, Ivory</b><br>Wine-red variants: <b>Ruby, Wine, Burgundy, Cherry Glow</b>',cu:'Glass container presentation<br>Color and scent of your choice<br>Ideal for gifts, decor and premium details',us:'Place on a stable heat-resistant surface<br>Do not move while lit<br>Trim the wick if it gets too tall<br>Never leave unattended',ho:'1) Choose the variant: blue, white or wine-red<br>2) Tell us the preferred name/color<br>3) Quantity and desired scent<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order the ROUND GLASS COLLECTION - Variant: - Name/color: - Quantity: - Scent: - Delivery:'},
-      coleccion_espiral:{n:'Spiral Collection',d:'Textured candles with a spiral design, modern and handmade. Their shape creates visual presence and works beautifully in decorative sets of different sizes.',pr:'Yellow spiral collection: <b>Ask for price</b><br><b>Amber S / Sun Mini:</b> 2 cm<br><b>Amber M / Sun Medium:</b> 3 cm<br><b>Amber L / Sun Max:</b> 5 cm',cu:'Amber yellow color<br>Optional scent<br>Available by size or as S + M + L set<br>Perfect for visible decor',us:'Place on a plate, decorative tray or candle holder<br>Combine several sizes for a more elegant effect<br>Keep away from fabrics, paper and air drafts<br>Never leave unattended',ho:'1) Choose size: Amber S, Amber M or Amber L<br>2) Quantity or complete set<br>3) Desired scent<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order the SPIRAL COLLECTION - Size: Amber S/M/L or set - Quantity: - Scent: - Delivery:'}
+      coleccion_vidrio_redondo:{n:'Round Glass Collection',d:'Round glass container candles, elegant and ready to decorate, gift or create a warm special atmosphere. One collection with blue, white and wine-red variants to choose according to the style of the space.',pr:'Round glass collection: <b>COP 15.000 each</b><br>Blue variants: <b>Blue Aura, Ocean, Blue Moon, Blue Glow</b><br>White variants: <b>Pearl, Cloud, Pure, Ivory</b><br>Wine-red variants: <b>Ruby, Wine, Burgundy, Cherry Glow</b>',cu:'Glass container presentation<br>Color and scent of your choice<br>Ideal for gifts, decor and premium details',us:'Place on a stable heat-resistant surface<br>Do not move while lit<br>Trim the wick if it gets too tall<br>Never leave unattended',ho:'1) Choose the variant: blue, white or wine-red<br>2) Tell us the preferred name/color<br>3) Quantity and desired scent<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order the ROUND GLASS COLLECTION - Variant: - Name/color: - Quantity: - Scent: - Delivery:'},
+      coleccion_espiral:{n:'Spiral Collection',d:'Textured candles with a spiral design, modern and handmade. Their shape creates visual presence and works beautifully in decorative sets of different sizes.',pr:'Yellow spiral collection: <b>COP 20.000 each</b><br><b>Amber S / Sun Mini:</b> 2 cm<br><b>Amber M / Sun Medium:</b> 3 cm<br><b>Amber L / Sun Max:</b> 5 cm',cu:'Amber yellow color<br>Optional scent<br>Available by size or as S + M + L set<br>Perfect for visible decor',us:'Place on a plate, decorative tray or candle holder<br>Combine several sizes for a more elegant effect<br>Keep away from fabrics, paper and air drafts<br>Never leave unattended',ho:'1) Choose size: Amber S, Amber M or Amber L<br>2) Quantity or complete set<br>3) Desired scent<br>4) Delivery date',wa:'Hi Mimita Remember, I want to order the SPIRAL COLLECTION - Size: Amber S/M/L or set - Quantity: - Scent: - Delivery:'}
     }
   }
 };
@@ -672,15 +683,114 @@ var CAT  = 'all';
 var Q    = '';
 var menuOpen = false;
 
+var WA_NUM = '573195565861';
+var CONTACT_EMAIL = 'mimitaremember2026@gmail.com';
+var MAILTO_LINK = 'mailto:' + CONTACT_EMAIL;
+
+function safeGet(key) {
+  try { return window.localStorage ? localStorage.getItem(key) : null; }
+  catch (e) { return null; }
+}
+
+function safeSet(key, value) {
+  try { if (window.localStorage) localStorage.setItem(key, value); }
+  catch (e) {}
+}
+
+/* Emojis en Unicode para evitar que se dañen por codificación al abrir WhatsApp */
+var WA_EMOJIS = '\uD83D\uDD6F\uFE0F \u2764\uFE0F';
+
+function productImageUrl(imgPath) {
+  if (!imgPath) return '';
+  try {
+    var url = new URL(imgPath, window.location.href);
+    // WhatsApp no puede abrir imágenes locales file://, solo enlaces publicados en la web.
+    return url.protocol === 'file:' ? imgPath : url.href;
+  } catch (e) {
+    return imgPath;
+  }
+}
+
+function waMessage(candleName, imgPath) {
+  var name = (candleName && candleName.trim()) ? candleName.trim() : '__________';
+  var msg = 'Hola Mimita, quiero preguntar por ' + name + '. Gracias ' + WA_EMOJIS;
+
+  if (imgPath) {
+    msg += '\n\nImagen de referencia: ' + productImageUrl(imgPath);
+  }
+
+  return msg;
+}
+
+function waLink(candleName, imgPath) {
+  return 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(waMessage(candleName, imgPath));
+}
+
+function updateWhatsAppLinks() {
+  var ids = ['fab', 'hWaBtn', 'howWaBtn', 'coWaBtn'];
+  for (var i = 0; i < ids.length; i++) {
+    var el = document.getElementById(ids[i]);
+    if (el) el.href = waLink();
+  }
+  ['coEmailBtn','fEmail'].forEach(function(id) {
+    var mail = document.getElementById(id);
+    if (mail) mail.href = MAILTO_LINK;
+  });
+}
+
+function stripDiacritics(value) {
+  return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+var FALLBACK_IMG = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">' +
+  '<rect width="800" height="600" fill="#1b1510"/>' +
+  '<circle cx="400" cy="250" r="92" fill="#e8924a" opacity="0.25"/>' +
+  '<text x="400" y="270" text-anchor="middle" font-family="Georgia,serif" font-size="64" fill="#f5c98a">MR</text>' +
+  '<text x="400" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#fce8cc">Mimita Remember</text>' +
+  '</svg>'
+);
+
+function handleImgError(img) {
+  if (!img) return;
+  var original = img.getAttribute('data-img-original') || img.getAttribute('src') || '';
+  var current = img.getAttribute('src') || '';
+  var tried = Number(img.getAttribute('data-img-try') || 0);
+  var candidates = [];
+  var clean = stripDiacritics(original);
+  if (clean && clean !== original) candidates.push(clean);
+  candidates.push(original.replace(/\.png$/i, '.PNG'));
+  candidates.push(original.replace(/\.PNG$/i, '.png'));
+  candidates.push(clean.replace(/\.png$/i, '.PNG'));
+  candidates.push(clean.replace(/\.PNG$/i, '.png'));
+
+  var unique = [];
+  candidates.forEach(function(candidate) {
+    if (candidate && unique.indexOf(candidate) === -1 && candidate !== current) unique.push(candidate);
+  });
+
+  if (tried < unique.length) {
+    img.setAttribute('data-img-try', String(tried + 1));
+    img.src = unique[tried];
+    return;
+  }
+
+  img.onerror = null;
+  img.src = FALLBACK_IMG;
+}
+
 /* ══════════════════════════════════════════════
    CATALOG RENDER
 ══════════════════════════════════════════════ */
 var CAT_KEYS   = ['all','flores','amor','deco','velones','intencion','sets','vidrio','espiralcol'];
+var renderToken = 0;
 var CAT_EMOJIS = {all:'',flores:' &#x1F338;',amor:' &#x2764;&#xFE0F;',deco:' &#x2728;',velones:' &#x1F56F;&#xFE0F;',intencion:' &#x1F33F;',sets:' &#x1F381;',vidrio:' &#x1FAD9;',espiralcol:' &#x1F300;'};
 
 function renderCatalog() {
+  var token = ++renderToken;
   var t = T[LANG];
   var g = document.getElementById('catGrid');
+  if (!g) return;
 
   // show skeletons
   var skelHtml = '';
@@ -690,6 +800,7 @@ function renderCatalog() {
   g.innerHTML = skelHtml;
 
   setTimeout(function() {
+    if (token !== renderToken) return;
     g.innerHTML = '';
     var q = Q.toLowerCase().trim();
 
@@ -704,7 +815,7 @@ function renderCatalog() {
     document.getElementById('cntPill').textContent = t.cnt(vis.length);
 
     if (vis.length === 0) {
-      g.innerHTML = '<div class="no-results"><strong>' + t.noR + '</strong><p>' + t.noRs + '</p><a class="btn btn-p" href="https://wa.me/573108095915" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>';
+      g.innerHTML = '<div class="no-results"><strong>' + t.noR + '</strong><p>' + t.noRs + '</p><a class="btn btn-p" href="' + waLink() + '" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>';
       return;
     }
 
@@ -718,7 +829,7 @@ function renderCatalog() {
       c.setAttribute('aria-label', pd.n);
       c.innerHTML =
         '<div class="card-img">' +
-          '<img src="' + p.img + '" alt="' + pd.n + '" loading="lazy" decoding="async">' +
+          '<img src="' + p.img + '" alt="' + pd.n + '" data-img-original="' + p.img + '" loading="lazy" decoding="async" onerror="handleImgError(this)">' +
           '<span class="badge-size">' + p.sizes + '</span>' +
           '<span class="badge-price">' + p.price + '</span>' +
           '<div class="card-cta-overlay">&#x1F50D; ' + t.vD + '</div>' +
@@ -770,8 +881,11 @@ function openModal(id) {
   for (var i = 0; i < PRODS.length; i++) { if (PRODS[i].id === id) { p = PRODS[i]; break; } }
   if (!pd || !p) return;
 
-  document.getElementById('mImg').src   = p.img;
-  document.getElementById('mImg').alt   = pd.n;
+  var modalImg = document.getElementById('mImg');
+  modalImg.setAttribute('data-img-original', p.img);
+  modalImg.setAttribute('data-img-try', '0');
+  modalImg.src = p.img;
+  modalImg.alt = pd.n;
   document.getElementById('mTitle').textContent  = pd.n;
   document.getElementById('mPill').textContent   = p.sizes;
   document.getElementById('mDesc').textContent   = pd.d;
@@ -785,7 +899,7 @@ function openModal(id) {
   document.getElementById('mL4').textContent = t.mL4;
   document.getElementById('mWaLbl').textContent = t.mWaLbl;
   document.getElementById('mBack').textContent  = '\u2190 ' + t.mBack;
-  document.getElementById('mWa').href = 'https://wa.me/573108095915?text=' + encodeURIComponent(pd.wa);
+  document.getElementById('mWa').href = waLink(pd.n, p.img);
 
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -845,7 +959,7 @@ function applyLang(lang) {
     f3t:t.f3t, f3d:t.f3d, f4t:t.f4t, f4d:t.f4d,
     catTitle:t.catTitle,
     howTitle:t.howTitle, howWaLbl:t.howWaLbl, pNote:t.pNote,
-    coTitle:t.coTitle, coNote:t.coNote, coWaBtn:t.coWaBtn,
+    coTitle:t.coTitle, coNote:t.coNote, coWaBtn:t.coWaBtn, coEmailBtn:t.coEmailBtn,
     fMade:t.fMade, fCop:t.fCop, fabTip:t.fabTip,
     ovT:t.ovT, ovS:t.ovS, ovP:t.ovP
   };
@@ -860,6 +974,9 @@ function applyLang(lang) {
   document.getElementById('hQuote').textContent = t.hQuote;
   document.getElementById('coText').innerHTML  = '&#x1F4F1; ' + t.coText;
 
+  // WhatsApp and email links
+  updateWhatsAppLinks();
+
   // search placeholder
   var si = document.getElementById('searchIn');
   if (si) si.placeholder = t.sPh;
@@ -870,17 +987,18 @@ function applyLang(lang) {
   renderChips();
   renderCatalog();
   renderSteps();
+  updateWhatsAppLinks();
 }
 
 function setLang(lang, fromOv) {
-  localStorage.setItem('mr_lang', lang);
+  safeSet('mr_lang', lang);
   applyLang(lang);
   if (fromOv) {
     var ov = document.getElementById('langOv');
     ov.classList.add('gone');
     setTimeout(function() { ov.style.display = 'none'; }, 420);
   }
-  showToast(lang === 'es' ? 'Espanol activado' : 'English selected');
+  showToast(lang === 'es' ? 'Español activado' : 'English selected');
 }
 
 /* ══════════════════════════════════════════════
@@ -1018,7 +1136,7 @@ function showToast(msg) {
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 (function init() {
-  var stored = localStorage.getItem('mr_lang');
+  var stored = safeGet('mr_lang');
   if (stored && T[stored]) {
     var ov = document.getElementById('langOv');
     ov.classList.add('gone');
