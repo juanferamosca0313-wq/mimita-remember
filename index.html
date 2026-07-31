@@ -146,14 +146,18 @@ header{position:sticky;top:0;z-index:90;height:var(--hh);background:rgba(13,11,8
 @keyframes cardIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 .card:hover{transform:translateY(-6px) scale(1.013);border-color:rgba(232,146,74,.45);background:var(--card-h);box-shadow:0 20px 46px rgba(0,0,0,.44),0 0 0 1px rgba(232,146,74,.15)}
 .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.card-img{position:relative;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(145deg,rgba(232,146,74,.08),rgba(255,255,255,.025))}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .44s var(--ease)}
-.card:hover .card-img img{transform:scale(1.09)}
+.card-img{position:relative;overflow:hidden;aspect-ratio:1/1;background:linear-gradient(145deg,rgba(232,146,74,.08),rgba(255,255,255,.025));display:grid;place-items:center}
+.card-img img{width:100%;height:100%;object-fit:contain;object-position:center;padding:16px;transition:transform .44s var(--ease)}
+.card:hover .card-img img{transform:scale(1.018)}
 .img-pending{width:100%;height:100%;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted2);font-size:12px;line-height:1.5}
 .img-pending::before{content:'Imagen próximamente';padding-top:42px;background:radial-gradient(circle at 50% 15px,rgba(232,146,74,.3) 0 9px,transparent 10px);letter-spacing:.2px}
 .card.featured{border-color:rgba(245,201,138,.55);background:linear-gradient(145deg,rgba(232,146,74,.17),rgba(255,255,255,.045));box-shadow:0 12px 34px rgba(232,146,74,.16)}
 .card.featured::before{content:'OFERTA ESPECIAL';position:absolute;z-index:3;top:8px;right:8px;padding:5px 10px;border-radius:99px;background:linear-gradient(135deg,var(--al),var(--accent));color:#241207;font-size:9px;font-weight:900;letter-spacing:.8px}
 .card.featured .card-img{margin-top:0}
+.catalog-divider{grid-column:1/-1;margin:34px 0 6px;padding:22px 24px;border:1px solid rgba(245,201,138,.3);border-radius:var(--r);background:linear-gradient(135deg,rgba(232,146,74,.14),rgba(255,255,255,.035));position:relative;overflow:hidden}
+.catalog-divider::after{content:'MR';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:54px;font-weight:900;color:rgba(245,201,138,.08)}
+.catalog-divider h3{font-family:var(--serif);font-size:clamp(24px,3vw,34px);color:var(--ap);position:relative;z-index:1}
+.catalog-divider p{margin-top:5px;color:var(--muted);font-size:13px;position:relative;z-index:1}
 .badge-size{position:absolute;top:8px;left:8px;background:rgba(13,11,8,.78);backdrop-filter:blur(6px);border:1px solid rgba(255,215,160,.16);border-radius:99px;padding:3px 9px;font-size:10px;font-weight:700;color:var(--al);letter-spacing:.2px}
 .badge-price{position:absolute;bottom:8px;right:8px;background:rgba(13,11,8,.84);backdrop-filter:blur(8px);border:1px solid rgba(232,146,74,.24);border-radius:99px;padding:4px 11px;font-size:12px;font-weight:800;color:var(--ap)}
 .card-cta-overlay{position:absolute;inset:0;background:rgba(13,11,8,.55);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;font-size:13px;font-weight:700;color:var(--al);gap:6px;letter-spacing:.2px}
@@ -177,8 +181,8 @@ header{position:sticky;top:0;z-index:90;height:var(--hh);background:rgba(13,11,8
 .modal-close{position:absolute;top:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid var(--line) !important;display:grid;place-items:center;color:var(--muted);font-size:16px;transition:background .15s,color .15s,transform .18s}
 .modal-close:hover{background:rgba(255,255,255,.2);color:var(--text);transform:rotate(90deg)}
 .modal-split{display:flex;flex:0 0 auto}
-@media(min-width:620px){.modal-split{flex-direction:row;height:min(300px,38vh)}.modal-img{flex:0 0 48%;height:100%;width:48%;object-fit:cover}.modal-info{flex:1;display:flex;flex-direction:column;justify-content:center;padding:26px}}
-@media(max-width:619px){.modal-split{flex-direction:column}.modal-img{width:100%;height:210px;object-fit:cover}.modal-info{padding:18px 18px 0}}
+@media(min-width:620px){.modal-split{flex-direction:row;height:min(300px,38vh)}.modal-img{flex:0 0 48%;height:100%;width:48%;object-fit:contain;padding:12px;background:#15110d}.modal-info{flex:1;display:flex;flex-direction:column;justify-content:center;padding:26px}}
+@media(max-width:619px){.modal-split{flex-direction:column}.modal-img{width:100%;height:210px;object-fit:contain;padding:10px;background:#15110d}.modal-info{padding:18px 18px 0}}
 .modal-title{font-family:var(--serif);font-size:clamp(21px,3vw,28px);font-weight:700;line-height:1.15}
 .modal-pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;color:var(--muted);border:1px solid var(--line);padding:4px 11px;border-radius:99px;margin-top:9px}
 .modal-body{padding:20px 22px 24px;overflow-y:auto;flex:1}
@@ -566,15 +570,15 @@ var PRODS = [
   {id:'rosas_encender', img:'img/rosasparaencender.jpeg', price:'COP 8.000', sizes:'Unidad', cat:'nuevos'},
   {id:'bandera_colombia', img:'img/banderadecolombia.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
   {id:'velon_flores', img:'img/velonenformadeflor.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'velas_navidenas', img:'', price:'COP 3.500', sizes:'Unidad', cat:'nuevos'},
+  {id:'velas_navidenas', img:'img/velitasnavidenas.jpeg', price:'COP 3.500', sizes:'Unidad', cat:'nuevos'},
   {id:'vela_cuadritos', img:'img/veladecuadritos.jpeg', price:'COP 35.000', sizes:'Unidad', cat:'nuevos'},
   {id:'kit_seis_velas', img:'img/kit6velas.jpeg', price:'COP 20.000', sizes:'Kit x 6', cat:'sets', featured:true},
-  {id:'pesebre_resina', img:'', price:'COP 650.000', sizes:'14 figuras', cat:'religioso'},
-  {id:'virgen_peregrina', img:'', price:'COP 95.000', sizes:'Unidad', cat:'religioso'},
+  {id:'pesebre_resina', img:'img/pesebre.jpeg', price:'COP 650.000', sizes:'14 figuras', cat:'religioso'},
+  {id:'virgen_peregrina', img:'img/virgen peregrina.jpeg', price:'COP 95.000', sizes:'Unidad', cat:'religioso'},
   {id:'misterio_amor', img:'', price:'COP 180.000', sizes:'Kit · 30 cm', cat:'religioso'},
-  {id:'peregrina_kit', img:'', price:'COP 120.000', sizes:'Kit completo', cat:'religioso'},
-  {id:'virgen_fatima', img:'', price:'COP 105.000', sizes:'Unidad', cat:'religioso'},
-  {id:'virgen_guadalupe', img:'', price:'COP 105.000', sizes:'Unidad', cat:'religioso'}
+  {id:'peregrina_kit', img:'img/resinavirgenperegrinaconvelita.jpeg', price:'COP 120.000', sizes:'Kit completo', cat:'religioso'},
+  {id:'virgen_fatima', img:'img/virgendefatima.jpeg', price:'COP 105.000', sizes:'Unidad', cat:'religioso'},
+  {id:'virgen_guadalupe', img:'img/virgendeguadalupe.jpeg', price:'COP 105.000', sizes:'Unidad', cat:'religioso'}
 ];
 
 /* ══════════════════════════════════════════════
@@ -596,7 +600,7 @@ var T = {
     f4t:'Envío Colombia',    f4d:'Coordinamos la entrega contigo',
     catTitle:'Catálogo', sPh:'Buscar...', vD:'Ver detalles',
     noR:'No encontramos esa vela', noRs:'Intenta con otra búsqueda o escríbenos al WhatsApp.',
-    cats:{all:'Todas',flores:'Flores',amor:'Amor',deco:'Decorativas',velones:'Velones',intencion:'Intención',sets:'Sets',vidrio:'Vidrio redondo',espiralcol:'Espiral',nuevos:'Novedades',religioso:'Colección religiosa'},
+    cats:{all:'Todas',flores:'Flores',amor:'Amor',deco:'Decorativas',velones:'Velones',intencion:'Intención',sets:'Sets',vidrio:'Vidrio redondo',espiralcol:'Espiral',nuevos:'Novedades',religioso:'Resina Mimita Remember'},
     howTitle:'Cómo pedir', howWaLbl:'Escribir por WhatsApp',
     pNote:'Todos los precios están en pesos colombianos (COP).',
     coTitle:'Contacto',
@@ -655,7 +659,7 @@ var T = {
     f4t:'Colombia delivery', f4d:'We arrange delivery together',
     catTitle:'Catalog', sPh:'Search...', vD:'View details',
     noR:'No candles found', noRs:'Try a different search or message us on WhatsApp.',
-    cats:{all:'All',flores:'Flowers',amor:'Love',deco:'Decorative',velones:'Pillars',intencion:'Intention',sets:'Sets',vidrio:'Round glass',espiralcol:'Spiral',nuevos:'New',religioso:'Religious collection'},
+    cats:{all:'All',flores:'Flowers',amor:'Love',deco:'Decorative',velones:'Pillars',intencion:'Intention',sets:'Sets',vidrio:'Round glass',espiralcol:'Spiral',nuevos:'New',religioso:'Resina Mimita Remember'},
     howTitle:'How to order', howWaLbl:'Message on WhatsApp',
     pNote:'All prices are in Colombian pesos (COP).',
     coTitle:'Contact',
@@ -905,7 +909,15 @@ function renderCatalog() {
     return;
   }
 
+  var religiousHeadingAdded = false;
   vis.forEach(function(p, i) {
+    if (p.cat === 'religioso' && !religiousHeadingAdded) {
+      var divider = document.createElement('div');
+      divider.className = 'catalog-divider';
+      divider.innerHTML = '<h3>Resina Mimita Remember</h3><p>Figuras religiosas y kits elaborados en resina con acabados especiales.</p>';
+      g.appendChild(divider);
+      religiousHeadingAdded = true;
+    }
     var pd = t.pd[p.id];
     var c  = document.createElement('article');
     c.className = 'card' + (p.featured ? ' featured' : '');
