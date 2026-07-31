@@ -6,6 +6,7 @@
 <title>Mimita Remember | Velas Artesanales</title>
 <meta name="description" content="Velas artesanales hechas con amor. Personalizables en color y aroma. Colombia. Pide por WhatsApp o correo."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 /* ── TOKENS ── */
@@ -142,13 +143,13 @@ header{position:sticky;top:0;z-index:90;height:var(--hh);background:rgba(13,11,8
 @keyframes pulse{0%,100%{opacity:.4}55%{opacity:1}}
 
 /* card */
-.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .22s var(--ease),border-color .2s,background .2s,box-shadow .22s;box-shadow:0 2px 8px rgba(0,0,0,.28);will-change:transform;opacity:0;animation:cardIn .42s var(--ease) both}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .22s var(--ease),border-color .2s,background .2s,box-shadow .22s;box-shadow:0 2px 8px rgba(0,0,0,.28);opacity:0;animation:cardIn .42s var(--ease) both;content-visibility:auto;contain-intrinsic-size:320px 410px}
 @keyframes cardIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 .card:hover{transform:translateY(-6px) scale(1.013);border-color:rgba(232,146,74,.45);background:var(--card-h);box-shadow:0 20px 46px rgba(0,0,0,.44),0 0 0 1px rgba(232,146,74,.15)}
 .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.card-img{position:relative;overflow:hidden;aspect-ratio:1/1;background:linear-gradient(145deg,rgba(232,146,74,.08),rgba(255,255,255,.025));display:grid;place-items:center}
-.card-img img{width:100%;height:100%;object-fit:contain;object-position:center;padding:16px;transition:transform .44s var(--ease)}
-.card:hover .card-img img{transform:scale(1.018)}
+.card-img{position:relative;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(145deg,#352319,#211811);display:grid;place-items:center}
+.card-img img{width:100%;height:100%;object-fit:cover;object-position:center;padding:0;transition:transform .38s var(--ease)}
+.card:hover .card-img img{transform:scale(1.012)}
 .img-pending{width:100%;height:100%;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted2);font-size:12px;line-height:1.5}
 .img-pending::before{content:'Imagen próximamente';padding-top:42px;background:radial-gradient(circle at 50% 15px,rgba(232,146,74,.3) 0 9px,transparent 10px);letter-spacing:.2px}
 .card.featured{border-color:rgba(245,201,138,.55);background:linear-gradient(145deg,rgba(232,146,74,.17),rgba(255,255,255,.045));box-shadow:0 12px 34px rgba(232,146,74,.16)}
@@ -181,8 +182,8 @@ header{position:sticky;top:0;z-index:90;height:var(--hh);background:rgba(13,11,8
 .modal-close{position:absolute;top:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid var(--line) !important;display:grid;place-items:center;color:var(--muted);font-size:16px;transition:background .15s,color .15s,transform .18s}
 .modal-close:hover{background:rgba(255,255,255,.2);color:var(--text);transform:rotate(90deg)}
 .modal-split{display:flex;flex:0 0 auto}
-@media(min-width:620px){.modal-split{flex-direction:row;height:min(300px,38vh)}.modal-img{flex:0 0 48%;height:100%;width:48%;object-fit:contain;padding:12px;background:#15110d}.modal-info{flex:1;display:flex;flex-direction:column;justify-content:center;padding:26px}}
-@media(max-width:619px){.modal-split{flex-direction:column}.modal-img{width:100%;height:210px;object-fit:contain;padding:10px;background:#15110d}.modal-info{padding:18px 18px 0}}
+@media(min-width:620px){.modal-split{flex-direction:row;height:min(300px,38vh)}.modal-img{flex:0 0 48%;height:100%;width:48%;object-fit:cover;object-position:center;background:#2b1d15}.modal-info{flex:1;display:flex;flex-direction:column;justify-content:center;padding:26px}}
+@media(max-width:619px){.modal-split{flex-direction:column}.modal-img{width:100%;height:210px;object-fit:cover;object-position:center;background:#2b1d15}.modal-info{padding:18px 18px 0}}
 .modal-title{font-family:var(--serif);font-size:clamp(21px,3vw,28px);font-weight:700;line-height:1.15}
 .modal-pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;color:var(--muted);border:1px solid var(--line);padding:4px 11px;border-radius:99px;margin-top:9px}
 .modal-body{padding:20px 22px 24px;overflow-y:auto;flex:1}
@@ -361,7 +362,7 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
   <div class="modal">
     <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">&#x2715;</button>
     <div class="modal-split">
-      <img id="mImg" class="modal-img" src="" alt="" loading="lazy" decoding="async" onerror="handleImgError(this)">
+      <img id="mImg" class="modal-img" alt="" width="800" height="600" loading="lazy" decoding="async" onerror="handleImgError(this)">
       <div class="modal-info">
         <h2 id="mTitle" class="modal-title"></h2>
         <span id="mPill" class="modal-pill"></span>
@@ -565,7 +566,7 @@ var PRODS = [
   {id:'osita_mama', img:'img/mamaosa.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
   {id:'oso_papa', img:'img/papaoso.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
   {id:'ositos_pequenos', img:'img/ositobebe.jpeg', price:'COP 8.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'momentos_cristal', img:'img/momentosencrital.jpeg', price:'COP 15.000', sizes:'Cada una', cat:'nuevos'},
+  {id:'momentos_cristal', img:'img/momentosencristal.jpeg', price:'COP 15.000', sizes:'Cada una', cat:'nuevos'},
   {id:'decorar_encender', img:'img/paradecoraryencender.jpeg', price:'COP 15.000', sizes:'Unidad', cat:'nuevos'},
   {id:'rosas_encender', img:'img/rosasparaencender.jpeg', price:'COP 8.000', sizes:'Unidad', cat:'nuevos'},
   {id:'bandera_colombia', img:'img/banderadecolombia.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
@@ -574,7 +575,7 @@ var PRODS = [
   {id:'vela_cuadritos', img:'img/veladecuadritos.jpeg', price:'COP 35.000', sizes:'Unidad', cat:'nuevos'},
   {id:'kit_seis_velas', img:'img/kit6velas.jpeg', price:'COP 20.000', sizes:'Kit x 6', cat:'sets', featured:true},
   {id:'pesebre_resina', img:'img/pesebre.jpeg', price:'COP 650.000', sizes:'14 figuras', cat:'religioso'},
-  {id:'virgen_peregrina', img:'img/virgen peregrina.jpeg', price:'COP 95.000', sizes:'Unidad', cat:'religioso'},
+  {id:'virgen_peregrina', img:'img/virgenperegrina.jpeg', price:'COP 95.000', sizes:'Unidad', cat:'religioso'},
   {id:'misterio_amor', img:'', price:'COP 180.000', sizes:'Kit · 30 cm', cat:'religioso'},
   {id:'peregrina_kit', img:'img/resinavirgenperegrinaconvelita.jpeg', price:'COP 120.000', sizes:'Kit completo', cat:'religioso'},
   {id:'virgen_fatima', img:'img/virgendefatima.jpeg', price:'COP 105.000', sizes:'Unidad', cat:'religioso'},
@@ -849,12 +850,22 @@ var PENDING_IMG = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
   '</svg>'
 );
 
+/* Alternativas para nombres que pueden haberse subido a GitHub con un espacio o un error ortográfico. */
+var IMAGE_ALIASES = {
+  'img/virgenperegrina.jpeg':['img/virgen peregrina.jpeg'],
+  'img/virgen peregrina.jpeg':['img/virgenperegrina.jpeg'],
+  'img/momentosencristal.jpeg':['img/momentosencrital.jpeg'],
+  'img/momentosencrital.jpeg':['img/momentosencristal.jpeg']
+};
+
 function handleImgError(img) {
   if (!img) return;
   var original = img.getAttribute('data-img-original') || img.getAttribute('src') || '';
   var current = img.getAttribute('src') || '';
   var tried = Number(img.getAttribute('data-img-try') || 0);
   var candidates = [];
+  var aliases = IMAGE_ALIASES[original] || [];
+  aliases.forEach(function(alias) { candidates.push(alias); });
   var clean = stripDiacritics(original);
   if (clean && clean !== original) candidates.push(clean);
   candidates.push(original.replace(/\.png$/i, '.PNG'));
@@ -926,8 +937,8 @@ function renderCatalog() {
     c.setAttribute('tabindex', '0');
     c.setAttribute('aria-label', pd.n);
     var imageHtml = p.img
-      ? '<img src="' + p.img + '" alt="' + pd.n + '" data-img-original="' + p.img + '" loading="' + (i < 8 ? 'eager' : 'lazy') + '" fetchpriority="' + (i < 4 ? 'high' : 'auto') + '" decoding="async" onerror="handleImgError(this)">'
-      : '<img src="' + PENDING_IMG + '" alt="Imagen próximamente para ' + pd.n + '" decoding="async">';
+      ? '<img src="' + p.img + '" alt="' + pd.n + '" width="800" height="600" data-img-original="' + p.img + '" loading="' + (i < 4 ? 'eager' : 'lazy') + '" fetchpriority="' + (i < 4 ? 'high' : 'low') + '" decoding="async" onerror="handleImgError(this)">'
+      : '<img src="' + PENDING_IMG + '" alt="Imagen próximamente para ' + pd.n + '" width="800" height="600" loading="lazy" decoding="async">';
     c.innerHTML =
         '<div class="card-img">' +
           imageHtml +
