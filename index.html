@@ -396,7 +396,7 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
   <img
     class="mim-img"
     id="mimImg"
-    src="img/mimita.PNG"
+    src="https://res.cloudinary.com/zw9q1q8x/image/upload/c_limit,w_260/q_auto/f_auto/mimita_etl1c7"
     alt="Mimita"
     title="Haz click para chatear!"
     onclick="mimClick()"
@@ -535,51 +535,56 @@ footer{border-top:1px solid var(--line);padding:22px 20px}
 /* ══════════════════════════════════════════════
    PRODUCTS DATA
 ══════════════════════════════════════════════ */
+var CLOUDINARY_BASE = 'https://res.cloudinary.com/zw9q1q8x/image/upload/';
+function cloudinaryProduct(publicId) {
+  return CLOUDINARY_BASE + 'c_fill,w_800,h_600,g_auto/q_auto/f_auto/' + publicId;
+}
+
 var PRODS = [
-  {id:'rosas',     img:'img/rosas.png',           price:'COP 15.000',       sizes:'10 cm',           cat:'flores'},
-  {id:'decor',     img:'img/decorativas.png',      price:'COP 15.000',       sizes:'8 cm',            cat:'deco'},
-  {id:'corazónes', img:'img/corazónes.png',        price:'COP 15.000/7.000', sizes:'10 cm & 5 cm',    cat:'amor'},
-  {id:'estrellas', img:'img/estrellitas.png',      price:'COP 15.000',       sizes:'12 cm',           cat:'deco'},
-  {id:'bolitas',   img:'img/bolitas.png',          price:'COP 12.000',       sizes:'8 cm',            cat:'deco'},
-  {id:'velones',   img:'img/velones.png',          price:'COP 25.000-20.000',sizes:'22/15 cm',        cat:'velones'},
-  {id:'intencion', img:'img/dedicatoria.png',      price:'COP 30.000',       sizes:'Largas/Arbolitos',cat:'intencion'},
-  {id:'tresrosas', img:'img/tresrosas.PNG',        price:'COP 25.000',       sizes:'15 x 5 cm',       cat:'flores'},
-  {id:'rosaimp',   img:'img/rojaconrosas.PNG',     price:'COP 20.000',       sizes:'5 cm',            cat:'flores'},
-  {id:'luzfloral', img:'img/grandesconflores.PNG', price:'COP 35.000',       sizes:'10 cm',           cat:'flores'},
-  {id:'aura',      img:'img/rosaamarilla.PNG',     price:'COP 35.000',       sizes:'20-30 cm',        cat:'velones'},
-  {id:'cristal',   img:'img/cristal.PNG',          price:'COP 35.000',       sizes:'8 cm',            cat:'deco'},
-  {id:'trilogia',  img:'img/setdetres.PNG',        price:'COP 30.000 set',   sizes:'Set x 3',         cat:'sets'},
-  {id:'ondas',     img:'img/onduladas.PNG',        price:'COP 20.000',       sizes:'12 cm',           cat:'deco'},
-  {id:'carmesi',   img:'img/rojaenergetica.PNG',   price:'COP 15.000',       sizes:'8 cm',            cat:'intencion'},
-  {id:'perlaoval', img:'img/texturaovalada.PNG',   price:'COP 15.000',       sizes:'8 cm',            cat:'deco'},
-  {id:'aurora',    img:'img/U.PNG',                price:'COP 12.000',       sizes:'8 cm',            cat:'deco'},
-  {id:'ojoalma',   img:'img/ojoespiritual.PNG',    price:'COP 12.000',       sizes:'5 cm',            cat:'intencion'},
-  {id:'espiral',   img:'img/espiral.PNG',          price:'COP 15.000',       sizes:'5 cm',            cat:'intencion'},
+  {id:'rosas',     img:cloudinaryProduct('rosas_esusio'),            price:'COP 15.000',       sizes:'10 cm',           cat:'flores'},
+  {id:'decor',     img:cloudinaryProduct('decorativas_jo74fp'),       price:'COP 15.000',       sizes:'8 cm',            cat:'deco'},
+  {id:'corazónes', img:cloudinaryProduct('corazones_vff2mr'),         price:'COP 15.000/7.000', sizes:'10 cm & 5 cm',    cat:'amor'},
+  {id:'estrellas', img:cloudinaryProduct('estrellitas_fd1suk'),       price:'COP 15.000',       sizes:'12 cm',           cat:'deco'},
+  {id:'bolitas',   img:cloudinaryProduct('bolitas_yd5ay1'),           price:'COP 12.000',       sizes:'8 cm',            cat:'deco'},
+  {id:'velones',   img:cloudinaryProduct('velones_g0loyq'),           price:'COP 25.000-20.000',sizes:'22/15 cm',        cat:'velones'},
+  {id:'intencion', img:cloudinaryProduct('dedicatoria_i0husf'),       price:'COP 30.000',       sizes:'Largas/Arbolitos',cat:'intencion'},
+  {id:'tresrosas', img:cloudinaryProduct('tresrosas_xgrqkj'),         price:'COP 25.000',       sizes:'15 x 5 cm',       cat:'flores'},
+  {id:'rosaimp',   img:cloudinaryProduct('rojaconrosas_n5uv0c'),      price:'COP 20.000',       sizes:'5 cm',            cat:'flores'},
+  {id:'luzfloral', img:cloudinaryProduct('grandesconflores_guda8f'),  price:'COP 35.000',       sizes:'10 cm',           cat:'flores'},
+  {id:'aura',      img:cloudinaryProduct('rosaamarilla_w2nl3f'),      price:'COP 35.000',       sizes:'20-30 cm',        cat:'velones'},
+  {id:'cristal',   img:cloudinaryProduct('cristal_tpjyfi'),           price:'COP 35.000',       sizes:'8 cm',            cat:'deco'},
+  {id:'trilogia',  img:cloudinaryProduct('setdetres_fvsbzq'),         price:'COP 30.000 set',   sizes:'Set x 3',         cat:'sets'},
+  {id:'ondas',     img:cloudinaryProduct('onduladas_azzomv'),         price:'COP 20.000',       sizes:'12 cm',           cat:'deco'},
+  {id:'carmesi',   img:cloudinaryProduct('rojaenergetica_spiofo'),    price:'COP 15.000',       sizes:'8 cm',            cat:'intencion'},
+  {id:'perlaoval', img:cloudinaryProduct('texturaovalada_xjs3pt'),    price:'COP 15.000',       sizes:'8 cm',            cat:'deco'},
+  {id:'aurora',    img:cloudinaryProduct('U_xdrkay'),                 price:'COP 12.000',       sizes:'8 cm',            cat:'deco'},
+  {id:'ojoalma',   img:cloudinaryProduct('ojoespiritual_umhlk4'),     price:'COP 12.000',       sizes:'5 cm',            cat:'intencion'},
+  {id:'espiral',   img:cloudinaryProduct('espiral_qdcxsz'),           price:'COP 15.000',       sizes:'5 cm',            cat:'intencion'},
 
   /* Nuevas colecciones: se muestran como una sola tarjeta por colección */
-  {id:'coleccion_vidrio_redondo', img:'img/coleccion_vidrio_redondo.png', price:'COP 30.000', sizes:'Conjunto x 3', cat:'vidrio'},
-  {id:'coleccion_espiral',        img:'img/coleccion_espiral.png',        price:'COP 20.000', sizes:'2 / 3 / 5 cm', cat:'espiralcol'},
+  {id:'coleccion_vidrio_redondo', img:cloudinaryProduct('coleccion_vidrio_redondo_xkbnqg'), price:'COP 30.000', sizes:'Conjunto x 3', cat:'vidrio'},
+  {id:'coleccion_espiral',        img:cloudinaryProduct('coleccion_espiral_z4qnsd'),        price:'COP 20.000', sizes:'2 / 3 / 5 cm', cat:'espiralcol'},
 
-  /* Nuevos productos: las rutas vacías muestran un espacio listo para subir la foto */
-  {id:'jardin_cristal', img:'img/rosaencristal.jpeg', price:'COP 15.000', sizes:'Cada una', cat:'nuevos'},
-  {id:'familia_ositos', img:'img/familiadeosos.jpeg', price:'COP 80.000', sizes:'Familia', cat:'nuevos'},
-  {id:'osita_mama', img:'img/mamaosa.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'oso_papa', img:'img/papaoso.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'ositos_pequenos', img:'img/ositobebe.jpeg', price:'COP 8.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'momentos_cristal', img:'img/momentosencristal.jpeg', price:'COP 15.000', sizes:'Cada una', cat:'nuevos'},
-  {id:'decorar_encender', img:'img/paradecoraryencender.jpeg', price:'COP 15.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'rosas_encender', img:'img/rosasparaencender.jpeg', price:'COP 8.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'bandera_colombia', img:'img/banderadecolombia.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'velon_flores', img:'img/velonenformadeflor.jpeg', price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'velas_navidenas', img:'img/velitasnavidenas.jpeg', price:'COP 3.500', sizes:'Unidad', cat:'nuevos'},
-  {id:'vela_cuadritos', img:'img/veladecuadritos.jpeg', price:'COP 35.000', sizes:'Unidad', cat:'nuevos'},
-  {id:'kit_seis_velas', img:'img/kit6velas.jpeg', price:'COP 20.000', sizes:'Kit x 6', cat:'sets', featured:true},
-  {id:'pesebre_resina', img:'img/pesebre.jpeg', price:'COP 650.000', sizes:'14 figuras', cat:'religioso'},
-  {id:'virgen_peregrina', img:'img/virgenperegrina.jpeg', price:'COP 95.000', sizes:'Unidad', cat:'religioso'},
-  {id:'misterio_amor', img:'img/inmisteriodeamorenresina.jpeg', price:'COP 180.000', sizes:'Kit · 30 cm', cat:'religioso'},
-  {id:'peregrina_kit', img:'img/resinavirgenperegrinaconvelita.jpeg', price:'COP 120.000', sizes:'Kit completo', cat:'religioso'},
-  {id:'virgen_fatima', img:'img/virgendefatima.jpeg', price:'COP 105.000', sizes:'Unidad', cat:'religioso'},
-  {id:'virgen_guadalupe', img:'img/virgendeguadalupe.jpeg', price:'COP 105.000', sizes:'Unidad', cat:'religioso'}
+  /* Novedades */
+  {id:'jardin_cristal', img:cloudinaryProduct('rosaencristal_ewly75'), price:'COP 15.000', sizes:'Cada una', cat:'nuevos'},
+  {id:'familia_ositos', img:cloudinaryProduct('familiadeosos_eeijnh'), price:'COP 80.000', sizes:'Familia', cat:'nuevos'},
+  {id:'osita_mama', img:cloudinaryProduct('mamaosa_mjo7xy'), price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'oso_papa', img:cloudinaryProduct('papaoso_tcry7f'), price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'ositos_pequenos', img:cloudinaryProduct('ositobebe_bssjrs'), price:'COP 8.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'momentos_cristal', img:cloudinaryProduct('momentosencrital_qyzs6t'), price:'COP 15.000', sizes:'Cada una', cat:'nuevos'},
+  {id:'decorar_encender', img:cloudinaryProduct('paradecoraryencender_jdeyxr'), price:'COP 15.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'rosas_encender', img:cloudinaryProduct('rosasparaencender_shwm2t'), price:'COP 8.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'bandera_colombia', img:cloudinaryProduct('banderadecolombia_z1ayh5'), price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'velon_flores', img:cloudinaryProduct('velonenformadeflor_bk4xmy'), price:'COP 30.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'velas_navidenas', img:cloudinaryProduct('velitasnavidenas_bo0sn0'), price:'COP 3.500', sizes:'Unidad', cat:'nuevos'},
+  {id:'vela_cuadritos', img:cloudinaryProduct('veladecuadritos_mo9czh'), price:'COP 35.000', sizes:'Unidad', cat:'nuevos'},
+  {id:'kit_seis_velas', img:cloudinaryProduct('kit6velas_vmnfoo'), price:'COP 20.000', sizes:'Kit x 6', cat:'sets', featured:true},
+  {id:'pesebre_resina', img:cloudinaryProduct('pesebre_pxj3ja'), price:'COP 650.000', sizes:'14 figuras', cat:'religioso'},
+  {id:'virgen_peregrina', img:cloudinaryProduct('virgen_peregrina_kwcqfk'), price:'COP 95.000', sizes:'Unidad', cat:'religioso'},
+  {id:'misterio_amor', img:cloudinaryProduct('inministeriodeamorenresina_ralanp'), price:'COP 180.000', sizes:'Kit · 30 cm', cat:'religioso'},
+  {id:'peregrina_kit', img:cloudinaryProduct('resinavirgenperegrinaconvelita_eecols'), price:'COP 120.000', sizes:'Kit completo', cat:'religioso'},
+  {id:'virgen_fatima', img:cloudinaryProduct('virgendefatima_raebqc'), price:'COP 105.000', sizes:'Unidad', cat:'religioso'},
+  {id:'virgen_guadalupe', img:cloudinaryProduct('virgendeguadalupe_occkqo'), price:'COP 105.000', sizes:'Unidad', cat:'religioso'}
 ];
 
 /* ══════════════════════════════════════════════
